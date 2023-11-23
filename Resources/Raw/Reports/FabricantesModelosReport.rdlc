@@ -31,7 +31,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fabricante</Value>
+                              <Value>Marca</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -250,7 +250,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>General</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>anio</rd:DefaultName>
@@ -292,14 +294,47 @@
         <DataSetName>FabricantesModelosDataSet</DataSetName>
         <Top>1.84891cm</Top>
         <Left>1.18745cm</Left>
-        <Height>1.12063cm</Height>
-        <Width>14.70957cm</Width>
+        <Height>1.12064cm</Height>
+        <Width>14.70956cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Marcas y modelos</Value>
+                <Style>
+                  <FontFamily>Lucida Calligraphy</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>0.44662cm</Top>
+        <Left>4.32873cm</Left>
+        <Height>0.83812cm</Height>
+        <Width>8.10917cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>2in</Height>
     <Style />

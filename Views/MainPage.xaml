@@ -30,7 +30,7 @@
                     <VerticalStackLayout Grid.Row="2" 
                                  Grid.Column="1">
                         <Button WidthRequest="200" Text="Consulta" Command="{Binding getFabricantesModelosCommand}"/>
-
+                        <Picker ItemsSource="{Binding ListaFabricantes}"/>
                         <Button WidthRequest="200" Text="Buscar" />
                         <Label Text="⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
                                 ⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 

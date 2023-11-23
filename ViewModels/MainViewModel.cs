@@ -4,6 +4,8 @@ using MauiMotos.DDBB;
 using MauiMotos.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +16,12 @@ namespace MauiMotos.ViewModels
     {
         public MainViewModel()
         {
-
+            listaFabricantes = new ObservableCollection<string>();
+            GetFabricantes();
         }
 
+        [ObservableProperty]
+        private ObservableCollection<string> listaFabricantes;
 
         [ObservableProperty]
         private string pDFData;
@@ -27,5 +32,12 @@ namespace MauiMotos.ViewModels
         {
             PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet", DBManager.GetFabricantesModelos(), "Reports/FabricantesModelosReport.rdlc");
         }
+
+        public void GetFabricantes()
+        {
+            DataTable nombreAutoresDT = DBManager.GetNombreFabricantes();
+            ListaFabricantes = DBUtils.DataTableToCollection(nombreAutoresDT, "nombre");
+        }
+
     }
 }
