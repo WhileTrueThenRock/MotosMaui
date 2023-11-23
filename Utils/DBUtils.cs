@@ -16,7 +16,7 @@ namespace MauiMotos.Utils
             foreach (DataRow row in dataTable.Rows)
             {
                 var datos = row[nombreColumna];
-                lista.Add((string)datos);
+                lista.Add(datos.ToString()); //cambio del cast al ToString
             }
             return lista;
 

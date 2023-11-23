@@ -2,37 +2,60 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodels="clr-namespace:MauiMotos.ViewModels"
              x:DataType="viewmodels:MainViewModel"
              x:Class="MauiMotos.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="600"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="350"/>
-                    <ColumnDefinition Width="800"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="600"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="800"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--Iniciamos el apartado de Tabs-->
+        <mdc:Tabs
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{DynamicResource filledTabsStyle}">
+            <mdc:TabItem IconKind="Bookmarks"  Text="Marcas y Modelos">
+
+                <mdc:NavigationBarItem ActivedIconKind="_10k" IconKind="CarRental" Text="Por Fecha de Fabricación">
+                    <VerticalStackLayout Background="Red">
+                        <Label Text="Por Fecha de FabricaciónNNNNNNNNNNN"/>
+                    </VerticalStackLayout>
+                </mdc:NavigationBarItem>
 
 
-                <ScrollView Grid.Row="2" Grid.Column="1">
-                    <VerticalStackLayout Grid.Row="2" 
+
+            </mdc:TabItem>
+            <!--Finaliza  el primer TAB-->
+
+        </mdc:Tabs>
+
+        <ScrollView Grid.Row="2" Grid.Column="1">
+            <VerticalStackLayout Grid.Row="2" 
                                  Grid.Column="1">
-                        <Button WidthRequest="200" Text="Consulta" Command="{Binding getFabricantesModelosCommand}"/>
-                        <Picker ItemsSource="{Binding ListaFabricantes}"/>
-                        <Button WidthRequest="200" Text="Buscar" />
-                        <Label Text="⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
+                <mdc:Button WidthRequest="200" Text="Consulta" IconKind="Search" Command="{Binding getFabricantesModelosCommand}"/>
+                <Picker ItemsSource="{Binding ListaFabricantes}" x:Name="cb_marcas" Background="LightBlue" BackgroundColor="Black">
+
+                    <Picker.Behaviors>
+                        <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding LoadPickerCommand}" 
+                                                                CommandParameter="{Binding Source={x:Reference cb_marcas }, Path=SelectedItem}"/>
+                    </Picker.Behaviors>
+                </Picker>
+
+
+                <Button WidthRequest="200" Text="Buscar" />
+                <Label Text="⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
                                 ⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
                                 ⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀ 
                                 ⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀ 
@@ -48,21 +71,17 @@
                                 ⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
                                 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉" />
 
-                    </VerticalStackLayout>
-                </ScrollView>
-                <!--BindingContext="{Binding Source={x:Reference DatosView}, Path=BindingContext}" y , Mode=OneWayToSource en source-->
-                <WebView Source="{Binding PDFData}" 
+            </VerticalStackLayout>
+        </ScrollView>
+        <!--BindingContext="{Binding Source={x:Reference DatosView}, Path=BindingContext}" y , Mode=OneWayToSource en source-->
+        <WebView Source="{Binding PDFData}" 
                     Grid.Row="2"
                      Grid.Column="2"
                      WidthRequest="800" 
-                     HeightRequest="600"/>
+                     HeightRequest="550"/>
 
 
 
-            </Grid>
-
-        </VerticalStackLayout>
-
-    </ScrollView>
+    </Grid>
 
 </ContentPage>

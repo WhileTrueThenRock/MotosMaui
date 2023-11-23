@@ -20,5 +20,11 @@ namespace MauiMotos.DDBB
         {
             return fabricantes_adapter.GetNombreFabricantes();
         }
+        public static DataTable GetFabricantesByMarca(String marca)
+        {
+            return fabricantes_modelosAdapter.GetFabricantesByMarca(marca);
+        }
+
+
     }
 }
