@@ -48,6 +48,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Raw\Reports\AccesoriosReport.rdlc" />
 		<None Remove="Resources\Raw\Reports\FabricantesModelosReport.rdlc" />
 	</ItemGroup>
 

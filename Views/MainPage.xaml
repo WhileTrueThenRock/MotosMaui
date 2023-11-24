@@ -5,19 +5,20 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodels="clr-namespace:MauiMotos.ViewModels"
              x:DataType="viewmodels:MainViewModel"
+             x:Name="mainpage"
              x:Class="MauiMotos.MainPage">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="600"/>
+            <RowDefinition />
+            <RowDefinition Height="540"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="350"/>
-            <ColumnDefinition Width="800"/>
+            <ColumnDefinition Width="900"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -26,56 +27,92 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Style="{DynamicResource filledTabsStyle}">
+            <!--Consulta General de Marcas y modelos-->
             <mdc:TabItem IconKind="Bookmarks"  Text="Marcas y Modelos">
+                <mdc:NavigationBar>
+                    <mdc:NavigationBarItem ActivedIconKind="Check" 
+                                       IconKind="CarRental" 
+                                       Text="Informe General">
 
-                <mdc:NavigationBarItem ActivedIconKind="_10k" IconKind="CarRental" Text="Por Fecha de Fabricación">
-                    <VerticalStackLayout Background="Red">
-                        <Label Text="Por Fecha de FabricaciónNNNNNNNNNNN"/>
-                    </VerticalStackLayout>
-                </mdc:NavigationBarItem>
+                        <VerticalStackLayout  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
+                            <!--Boton general-->
+                            <mdc:Button  WidthRequest="200" 
+                                         Text="Ver Marcas y Modelos"
+                                         IconKind="Search" 
+                                         Command="{Binding GetFabricantesModelosCommand}"/>
+                        </VerticalStackLayout>
+                    </mdc:NavigationBarItem>
+                    <!--Por fecha de Fabricaçao-->
+                    <mdc:NavigationBarItem ActivedIconKind="_10k" 
+                    IconKind="CarRental" 
+                    Text="Por Fecha de Fabricación">
 
+                        <VerticalStackLayout  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
+                            <!--Boton para filtrar por fecha fabricacion-->
+                            <mdc:Button   WidthRequest="200" 
+                                          Text="Buscar"
+                                          IconKind="Search" 
+                                          Command="{Binding GetFabricantesByAnioGTCommand}"
+                                          />
 
+                            <Entry Placeholder="Año...." Text="{Binding Filtro}"/>
 
+                        </VerticalStackLayout>
+                    </mdc:NavigationBarItem>
+                    <!--Consulta por Marcas -->
+                    <mdc:NavigationBarItem ActivedIconKind="_10k" 
+                                           IconKind="CarRental" 
+                                           Text="Por Marcas">
+
+                        <VerticalStackLayout 
+                                    BindingContext="{Binding Source={x:Reference mainpage},
+                                    Path=BindingContext}"
+                                    Grid.Row="2" 
+                                    Grid.Column="1">
+
+                            <Picker ItemsSource="{Binding ListaFabricantes}" 
+                                    x:Name="cb_marcas" Background="LightBlue" 
+                                    BackgroundColor="Black">
+                                <Picker.Behaviors>
+                                    <toolkit:EventToCommandBehavior
+                                        EventName="SelectedIndexChanged"
+                                        Command="{Binding LoadPickerCommand}" 
+                                        CommandParameter="{Binding Source={x:Reference cb_marcas }, Path=SelectedItem}"/>
+                                </Picker.Behaviors>
+                            </Picker>
+                        </VerticalStackLayout>
+                    </mdc:NavigationBarItem>
+                </mdc:NavigationBar>
             </mdc:TabItem>
             <!--Finaliza  el primer TAB-->
+
+            <mdc:TabItem IconKind="Watch" Text="Accesorios">
+                <mdc:NavigationBar>
+                    <mdc:NavigationBarItem Text="Todos los Accesorios" IconKind="Watch" ActivedIconKind="Check" >
+
+                        <VerticalStackLayout  HeightRequest="200"  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
+                            <!--Boton para filtrar por fecha fabricacion-->
+                            <mdc:Button WidthRequest="200" 
+                                        Text="Buscar"
+                                        HorizontalOptions="Center"
+                                        IconKind="Search"
+                                        Command="{Binding GetAccesoriosCommand}"/>
+                        </VerticalStackLayout>
+                    </mdc:NavigationBarItem>
+                    <mdc:NavigationBarItem Text="Por precio" IconKind="Watch" ActivedIconKind="Check" >
+
+                    </mdc:NavigationBarItem>
+                </mdc:NavigationBar>
+            </mdc:TabItem>
 
         </mdc:Tabs>
 
         <ScrollView Grid.Row="2" Grid.Column="1">
-            <VerticalStackLayout Grid.Row="2" 
-                                 Grid.Column="1">
-                <mdc:Button WidthRequest="200" Text="Consulta" IconKind="Search" Command="{Binding getFabricantesModelosCommand}"/>
-                <Picker ItemsSource="{Binding ListaFabricantes}" x:Name="cb_marcas" Background="LightBlue" BackgroundColor="Black">
 
-                    <Picker.Behaviors>
-                        <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding LoadPickerCommand}" 
-                                                                CommandParameter="{Binding Source={x:Reference cb_marcas }, Path=SelectedItem}"/>
-                    </Picker.Behaviors>
-                </Picker>
-
-
-                <Button WidthRequest="200" Text="Buscar" />
-                <Label Text="⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
-                                ⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆ 
-                                ⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿ 
-                                ⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀ 
-                                ⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
-                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉" />
-
-            </VerticalStackLayout>
         </ScrollView>
         <!--BindingContext="{Binding Source={x:Reference DatosView}, Path=BindingContext}" y , Mode=OneWayToSource en source-->
         <WebView Source="{Binding PDFData}" 
-                    Grid.Row="2"
+                    Grid.Row="1"
                      Grid.Column="2"
                      WidthRequest="800" 
                      HeightRequest="550"/>
