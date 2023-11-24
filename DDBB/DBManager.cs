@@ -14,6 +14,11 @@ namespace MauiMotos.DDBB
         private static fabricantesTableAdapter fabricantes_adapter = new fabricantesTableAdapter();
         private static accesoriosTableAdapter accesorios_adapter = new accesoriosTableAdapter();
         private static fabricantes_modelosTableAdapter anioGT_adapter = new fabricantes_modelosTableAdapter();
+        private static fabricantes_modelosTableAdapter anioLT_adapter = new fabricantes_modelosTableAdapter();
+        private static clientes_ventas_motosTableAdapter clientes_ventas_motosAdapter = new clientes_ventas_motosTableAdapter();
+        private static clientes_ventas_motosTableAdapter motos_disponibles_Adapter = new clientes_ventas_motosTableAdapter();
+
+
         public static DataTable GetFabricantesModelos()
         {
             return fabricantes_modelosAdapter.GetData();
@@ -36,6 +41,20 @@ namespace MauiMotos.DDBB
             return anioGT_adapter.GetAnioGT(anio);
         }
 
+        public static DataTable GetAnioLT(int anio)
+        {
+            return anioLT_adapter.GetAnioLT(anio);
+        }
+
+        public static DataTable GetVentasClientes()
+        {
+            return clientes_ventas_motosAdapter.GetData();
+        }
+        public static DataTable GetDisponibilidad()
+        {
+            return motos_disponibles_Adapter.GetDisponibilidad();
+        }
 
     }
+    
 }

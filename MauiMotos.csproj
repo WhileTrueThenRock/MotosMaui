@@ -49,7 +49,9 @@
 
 	<ItemGroup>
 		<None Remove="Resources\Raw\Reports\AccesoriosReport.rdlc" />
+		<None Remove="Resources\Raw\Reports\ClientesVentasMotosReport.rdlc" />
 		<None Remove="Resources\Raw\Reports\FabricantesModelosReport.rdlc" />
+		<None Remove="Resources\Raw\Reports\MotosDisponiblesReport.rdlc" />
 	</ItemGroup>
 
 	<ItemGroup>

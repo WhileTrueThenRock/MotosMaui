@@ -40,6 +40,10 @@
                                          Text="Ver Marcas y Modelos"
                                          IconKind="Search" 
                                          Command="{Binding GetFabricantesModelosCommand}"/>
+                            <mdc:Button   WidthRequest="200" 
+                                          Text="Ver Disponibilidad"
+                                          IconKind="Search" 
+                                          Command="{Binding GetMotosDisponiblesCommand}"/>
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
                     <!--Por fecha de Fabricaçao-->
@@ -50,10 +54,11 @@
                         <VerticalStackLayout  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
                             <!--Boton para filtrar por fecha fabricacion-->
                             <mdc:Button   WidthRequest="200" 
-                                          Text="Buscar"
+                                          Text="SLIDER"
                                           IconKind="Search" 
-                                          Command="{Binding GetFabricantesByAnioGTCommand}"
+                                          Command="{Binding GetFabricantesByAnioLTCommand}"
                                           />
+                            <!--AGREGAR UN SLIDER MODE TWOWAY PARA CONTROLAR LAS FECHAS DE LANZAMIENTO-->
 
                             <Entry Placeholder="Año...." Text="{Binding Filtro}"/>
 
@@ -104,7 +109,25 @@
                     </mdc:NavigationBarItem>
                 </mdc:NavigationBar>
             </mdc:TabItem>
+               <!--Finaliza el SEGUNDO TAB-->
+            <mdc:TabItem IconKind="AttachMoney" Text="Ventas">
+                <mdc:NavigationBar>
+                    <mdc:NavigationBarItem Text="Todas las ventas" IconKind="Money" ActivedIconKind="Check" >
 
+                        <VerticalStackLayout  HeightRequest="200"  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
+                            <!--Boton para filtrar por fecha fabricacion-->
+                            <mdc:Button WidthRequest="200" 
+                            Text="Buscar"
+                            HorizontalOptions="Center"
+                            IconKind="Search"
+                            Command="{Binding GetClientesVentasMotosCommand}"/>
+                        </VerticalStackLayout>
+                    </mdc:NavigationBarItem>
+                    <mdc:NavigationBarItem Text="Por precio" IconKind="Watch" ActivedIconKind="Check" >
+
+                    </mdc:NavigationBarItem>
+                </mdc:NavigationBar>
+            </mdc:TabItem>
         </mdc:Tabs>
 
         <ScrollView Grid.Row="2" Grid.Column="1">

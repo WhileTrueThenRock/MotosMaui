@@ -59,20 +59,49 @@ namespace MauiMotos.ViewModels
         }
 
         [RelayCommand]
-        public async Task GetAccesoriosAsync() //Esto hace referencia al boton de Consultas que salen las tablas de fabricantes y modelos
+        public async Task GetAccesoriosAsync() //Esto hace referencia al boton de buscar todos los Accesorios
         {
             PDFData = await ReportsUtils.GetReport("AccesoriosDataSet",
             DBManager.GetAccesorios(), "Reports/AccesoriosReport.rdlc");
         }
 
         [RelayCommand]
-        public async Task GetFabricantesByAnioGT() //Esto hace referencia al boton de Consultas que salen las tablas de fabricantes y modelos
+        public async Task GetFabricantesByAnioGT() //Esto hace referencia al boton de buscar fabricantes mayor que >
         {
 
             PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet",
             DBManager.GetAnioGT(filtro), "Reports/FabricantesModelosReport.rdlc");
 
         }
+
+        [RelayCommand]
+        public async Task GetFabricantesByAnioLT() //Esto hace referencia al boton de buscar fabricantes menor que <
+        {
+
+            PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet",
+            DBManager.GetAnioLT(filtro), "Reports/FabricantesModelosReport.rdlc");
+
+        }
+
+        [RelayCommand]
+        public async Task GetClientesVentasMotos() //Esto hace referencia al boton de buscar clientes y ventas de las motos
+        {
+
+            PDFData = await ReportsUtils.GetReport("ClientesVentasMotosDataSet",
+            DBManager.GetVentasClientes(), "Reports/ClientesVentasMotosReport.rdlc");
+
+        }
+
+        [RelayCommand]
+        public async Task GetMotosDisponibles() //Esto hace referencia al boton de mostrar disponibilidad
+        {
+
+            PDFData = await ReportsUtils.GetReport("MotosDisponiblesDataSet",
+            DBManager.GetDisponibilidad(), "Reports/MotosDisponiblesReport.rdlc");
+
+        }
+
+
 
     }
 }
