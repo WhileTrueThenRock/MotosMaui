@@ -305,60 +305,20 @@ FROM            modelos INNER JOIN
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="motos" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetMotosDisponibilidad" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetMotosDisponibilidad" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMotosDisponibilidad" UserSourceName="GetMotosDisponibilidad">
+              <DbSource ConnectionRef="motos" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetMotosDisponibilidad" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetMotosDisponibilidad" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMotosDisponibilidad" UserSourceName="GetMotosDisponibilidad">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT
-    clientes.nombre AS nombre_cliente,
-    clientes.apellido AS apellido_cliente,
-    clientes.fecha_nacimiento AS fecha_naci_cliente,
-    clientes.correo,
-    motocicletas.numero_serie AS bastidor,
-    motocicletas.color AS color_moto,
-    motocicletas.fecha_fabricacion,
-    motocicletas.precio AS precio_moto,
-    motocicletas.disponible AS moto_disponible,
-    modelos.nombre AS modelo,
-    modelos.anio_lanzamiento,
-    fabricantes.nombre AS marca,
-    fabricantes.pais,
-    ventas.fecha_venta,
-    ventas.total
-FROM
-    modelos
-INNER JOIN fabricantes ON modelos.id_fabricante = fabricantes.id_fabricante
-INNER JOIN motocicletas ON modelos.id_modelo = motocicletas.id_modelo
-INNER JOIN ventas ON motocicletas.id_motocicleta = ventas.id_motocicleta
-INNER JOIN clientes ON ventas.id_cliente = clientes.id_cliente
-WHERE
-    motocicletas.disponible = 'true'
-GROUP BY
-    clientes.nombre,
-    clientes.apellido,
-    clientes.fecha_nacimiento,
-    clientes.correo,
-    motocicletas.numero_serie,
-    motocicletas.color,
-    motocicletas.fecha_fabricacion,
-    motocicletas.precio,
-    motocicletas.disponible,
-    modelos.nombre,
-    modelos.anio_lanzamiento,
-    fabricantes.nombre,
-    fabricantes.pais,
-    ventas.fecha_venta,
-    ventas.total;
-con esta consulta consigo 23 resultados, y con esta otra  consigo 690 que se repiten muchos:
-SELECT DISTINCT 
-                         clientes.nombre AS nombre_Cliente, clientes.apellido AS apellido_cliente, clientes.fecha_nacimiento AS fecha_naci_cliente, clientes.correo, motocicletas.numero_serie AS bastidor, motocicletas.color AS color_moto, 
+                    <CommandText>SELECT        clientes.nombre AS nombre_cliente, clientes.apellido AS apellido_cliente, clientes.fecha_nacimiento AS fecha_naci_cliente, clientes.correo, motocicletas.numero_serie AS bastidor, motocicletas.color AS color_moto, 
                          motocicletas.fecha_fabricacion, motocicletas.precio AS precio_moto, motocicletas.disponible AS moto_disponible, modelos.nombre AS modelo, modelos.anio_lanzamiento, fabricantes.nombre AS marca, fabricantes.pais, 
                          ventas.fecha_venta, ventas.total
 FROM            modelos INNER JOIN
                          fabricantes ON modelos.id_fabricante = fabricantes.id_fabricante INNER JOIN
                          motocicletas ON modelos.id_modelo = motocicletas.id_modelo INNER JOIN
-                         ventas ON motocicletas.id_motocicleta = ventas.id_motocicleta, clientes
-WHERE        (motocicletas.disponible = 'true')
-por que salen tantos ?, intuyo que la consulta real es la primera</CommandText>
+                         ventas ON motocicletas.id_motocicleta = ventas.id_motocicleta INNER JOIN
+                         clientes ON ventas.id_cliente = clientes.id_cliente
+WHERE        (motocicletas.disponible = 'True')
+GROUP BY clientes.nombre, clientes.apellido, clientes.fecha_nacimiento, clientes.correo, motocicletas.numero_serie, motocicletas.color, motocicletas.fecha_fabricacion, motocicletas.precio, motocicletas.disponible, modelos.nombre, 
+                         modelos.anio_lanzamiento, fabricantes.nombre, fabricantes.pais, ventas.fecha_venta, ventas.total</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>

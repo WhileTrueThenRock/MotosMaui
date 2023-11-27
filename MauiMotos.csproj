@@ -48,6 +48,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Images\aprilia.png" />
+		<None Remove="Resources\Images\ducati.png" />
+		<None Remove="Resources\Images\erciMotos.png" />
+		<None Remove="Resources\Images\harley.png" />
+		<None Remove="Resources\Images\honda.png" />
+		<None Remove="Resources\Images\husqvarna.png" />
+		<None Remove="Resources\Images\indian.png" />
+		<None Remove="Resources\Images\kawasaki.png" />
+		<None Remove="Resources\Images\ktm.png" />
+		<None Remove="Resources\Images\moto_guzzi.png" />
+		<None Remove="Resources\Images\suzuki.png" />
+		<None Remove="Resources\Images\triumph.png" />
+		<None Remove="Resources\Images\yamaha.png" />
 		<None Remove="Resources\Raw\Reports\AccesoriosReport.rdlc" />
 		<None Remove="Resources\Raw\Reports\ClientesReport.rdlc" />
 		<None Remove="Resources\Raw\Reports\ClientesVentasMotosReport.rdlc" />
@@ -55,6 +68,7 @@
 		<None Remove="Resources\Raw\Reports\FacturasFechasReport.rdlc" />
 		<None Remove="Resources\Raw\Reports\MotosDisponiblesReport.rdlc" />
 		<None Remove="Resources\Raw\Reports\MotosReport.rdlc" />
+		<None Remove="Resources\Raw\Reports\suzuki.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -70,6 +84,11 @@
 
 	<ItemGroup>
 		<Folder Include="Models\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="Resources\Images\bmw.png" />
+	  <MauiAsset Include="Resources\Images\suzuki.png" />
 	</ItemGroup>
 
 	<ItemGroup>

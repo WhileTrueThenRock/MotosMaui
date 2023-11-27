@@ -43,7 +43,6 @@
                             <HorizontalStackLayout Spacing="90" >
                                 <mdc:Label Text="Motos Disponibles" ForegroundColor="Black"/>
                                 <mdc:Switch  HasIcon="True" IsChecked="{Binding SwitchEstado, Mode=TwoWay}"/>
-                                <Switch IsToggled="{Binding SwitchEstado}" />
                             </HorizontalStackLayout>
                             <mdc:Button   
                                           WidthRequest="200" 
@@ -59,17 +58,7 @@
                     Text="Por Fecha de Fabricación">
 
                         <VerticalStackLayout  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
-                            <!--Boton para filtrar por fecha fabricacion  AGREGAR RANGE SLIDER-->
-
-                            <!--<Label Text="Año de Fabricación mayor que:" />
-                            <Slider Maximum="2023" Minimum="1900" Value="{Binding FiltroMayor}" />
-                            <mdc:Button WidthRequest="200" 
-                                        Text="Buscar Mayor Que"
-                                        IconKind="Search" 
-                                        Command="{Binding GetFabricantesByAnioGTCommand}" />
-                            <Label Text="Año de Fabricación menor que:" />
-                            <Slider Maximum="2023" Minimum="1900" Value="{Binding FiltroMenor}" />
-                             />-->
+                            <!--Boton para filtrar por fecha fabricacion-->
                             <HorizontalStackLayout>
                                 <sliders:SfRangeSlider HorizontalOptions="Start"
                                                    Minimum="1900"
@@ -114,6 +103,10 @@
                                         CommandParameter="{Binding Source={x:Reference cb_marcas }, Path=SelectedItem}"/>
                                 </Picker.Behaviors>
                             </Picker>
+                            <Image  Source="{Binding ImagenSeleccionada}"  
+                                   HeightRequest="250"
+                           WidthRequest="270" HorizontalOptions="Center"/>
+
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
                 </mdc:NavigationBar>
@@ -206,7 +199,7 @@
                             <!--<DatePicker TextColor="Black" Date="{Binding FechaIni}" />-->
                             <!--<DatePicker TextColor="Black" Date="{Binding FechaFin}" />-->
 
-                            <picker:SfDatePicker x:Name="pickerIni" HeightRequest="150" WidthRequest="300" SelectedDate="{Binding FechaIni,Mode=TwoWay}"  >
+                            <picker:SfDatePicker x:Name="pickerIni"  HeightRequest="150" WidthRequest="300" SelectedDate="{Binding FechaIni,Mode=TwoWay}"  >
                                 <picker:SfDatePicker.HeaderView>
                                     <picker:PickerHeaderView Text="Desde" Height="40" />
                                 </picker:SfDatePicker.HeaderView>
@@ -225,6 +218,8 @@
                                          Command="{Binding GetFacturasByFechaCommand}"/>
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
+                    
+                  
                 </mdc:NavigationBar>
             </mdc:TabItem>
         </mdc:Tabs>

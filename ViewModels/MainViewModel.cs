@@ -30,7 +30,13 @@ namespace MauiMotos.ViewModels
             SwitchEstado = false;
             fechaIni = DateTime.Now;
             fechaFin = DateTime.Now;
+            imagenSeleccionada = "";
+            
         }
+
+
+        [ObservableProperty]
+        private string imagenSeleccionada;
 
         [ObservableProperty]
         private DateTime pickerIni;
@@ -93,6 +99,48 @@ namespace MauiMotos.ViewModels
             PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet",
             DBManager.GetFabricantesByMarca(marca), "Reports/FabricantesModelosReport.rdlc");
 
+            switch (marca)
+            {
+                case "Honda":
+                    ImagenSeleccionada = "honda.png";
+                    break;
+                case "Yamaha":
+                    ImagenSeleccionada = "yamaha.png";
+                    break;
+                case "Harley-Davidson":
+                    ImagenSeleccionada = "harley.png";
+                    break;
+                case "Kawasaki":
+                    ImagenSeleccionada = "kawasaki.png";
+                    break;
+                case "Suzuki":
+                    ImagenSeleccionada = "suzuki.png";
+                    break;
+                case "Ducati":
+                    ImagenSeleccionada = "ducati.png";
+                    break;
+                case "BMW Motorrad":
+                    ImagenSeleccionada = "bmw.png";
+                    break;
+                case "KTM":
+                    ImagenSeleccionada = "ktm.png";
+                    break;
+                case "Triumph":
+                    ImagenSeleccionada = "triumph.png";
+                    break;
+                case "Indian Motorcycle":
+                    ImagenSeleccionada = "indian.png";
+                    break;
+                case "Aprilia":
+                    ImagenSeleccionada = "aprilia.png";
+                    break;
+                case "Moto Guzzi":
+                    ImagenSeleccionada = "moto_guzzi.png";
+                    break;
+                case "Husqvarna":
+                    ImagenSeleccionada = "husqvarna.png";
+                    break;
+            }
         }
 
         public void CargarComboClientes() //Solo para cargar el picker de clientes

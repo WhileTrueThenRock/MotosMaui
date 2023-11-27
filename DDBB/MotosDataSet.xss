@@ -8,8 +8,8 @@
   <Shapes>
     <Shape ID="DesignTable:fabricantes_modelos" ZOrder="3" X="59" Y="29" Height="229" Width="264" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:fabricantes" ZOrder="4" X="346" Y="28" Height="153" Width="209" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
-    <Shape ID="DesignTable:accesorios" ZOrder="1" X="603" Y="32" Height="134" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
-    <Shape ID="DesignTable:clientes_ventas_motos" ZOrder="2" X="59" Y="270" Height="381" Width="273" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:accesorios" ZOrder="2" X="603" Y="32" Height="134" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
+    <Shape ID="DesignTable:clientes_ventas_motos" ZOrder="1" X="59" Y="270" Height="381" Width="273" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
