@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Material.Components.Maui.Extensions;
 using Microsoft.Extensions.Logging;
-
+using Syncfusion.Maui.Core.Hosting;
 namespace MauiMotos
 {
     public static class MauiProgram
@@ -9,8 +9,10 @@ namespace MauiMotos
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+            builder.ConfigureSyncfusionCore();
             builder
                 .UseMauiApp<App>().UseMauiCommunityToolkit()
+                .ConfigureSyncfusionCore()
                 .UseMaterialComponents(new List<string>
             {
                 "OpenSans-Regular.ttf",

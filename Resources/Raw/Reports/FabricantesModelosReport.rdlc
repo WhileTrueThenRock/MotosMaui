@@ -387,7 +387,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Marcas y modelos</Value>
+                <Value>Marcas y modelos </Value>
                 <Style>
                   <FontFamily>Lucida Calligraphy</FontFamily>
                   <FontSize>16pt</FontSize>

@@ -49,9 +49,12 @@
 
 	<ItemGroup>
 		<None Remove="Resources\Raw\Reports\AccesoriosReport.rdlc" />
+		<None Remove="Resources\Raw\Reports\ClientesReport.rdlc" />
 		<None Remove="Resources\Raw\Reports\ClientesVentasMotosReport.rdlc" />
 		<None Remove="Resources\Raw\Reports\FabricantesModelosReport.rdlc" />
+		<None Remove="Resources\Raw\Reports\FacturasFechasReport.rdlc" />
 		<None Remove="Resources\Raw\Reports\MotosDisponiblesReport.rdlc" />
+		<None Remove="Resources\Raw\Reports\MotosReport.rdlc" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -61,6 +64,8 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Npgsql" Version="7.0.6" />
 		<PackageReference Include="ReportViewerCore.WinForms" Version="15.1.18" />
+		<PackageReference Include="Syncfusion.Maui.Picker" Version="23.2.5" />
+		<PackageReference Include="Syncfusion.Maui.Sliders" Version="23.2.5" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -13,10 +13,9 @@ namespace MauiMotos.DDBB
         private static fabricantes_modelosTableAdapter fabricantes_modelosAdapter = new fabricantes_modelosTableAdapter();
         private static fabricantesTableAdapter fabricantes_adapter = new fabricantesTableAdapter();
         private static accesoriosTableAdapter accesorios_adapter = new accesoriosTableAdapter();
-        private static fabricantes_modelosTableAdapter anioGT_adapter = new fabricantes_modelosTableAdapter();
-        private static fabricantes_modelosTableAdapter anioLT_adapter = new fabricantes_modelosTableAdapter();
+        private static fabricantes_modelosTableAdapter anio_range_adapter = new fabricantes_modelosTableAdapter();
         private static clientes_ventas_motosTableAdapter clientes_ventas_motosAdapter = new clientes_ventas_motosTableAdapter();
-        private static clientes_ventas_motosTableAdapter motos_disponibles_Adapter = new clientes_ventas_motosTableAdapter();
+
 
 
         public static DataTable GetFabricantesModelos()
@@ -36,25 +35,54 @@ namespace MauiMotos.DDBB
             return accesorios_adapter.GetData();
         }
 
+        public static DataTable GetAccesoriosByPrecio(int precioMenor, int precioMayor)
+        {
+            return accesorios_adapter.GetAccesoriosByPrecio(precioMenor, precioMayor);
+        }
+
         public static DataTable GetAnioGT(int anio)
         {
-            return anioGT_adapter.GetAnioGT(anio);
+            return anio_range_adapter.GetAnioGT(anio);
         }
 
         public static DataTable GetAnioLT(int anio)
         {
-            return anioLT_adapter.GetAnioLT(anio);
+            return anio_range_adapter.GetAnioLT(anio);
+        }
+
+        public static DataTable GetAnioRange(int anioMenor, int anioMayor)
+        {
+            return anio_range_adapter.GetAnioRange(anioMenor, anioMayor);
         }
 
         public static DataTable GetVentasClientes()
         {
             return clientes_ventas_motosAdapter.GetData();
         }
-        public static DataTable GetDisponibilidad()
+        public static DataTable GetMotos()
         {
-            return motos_disponibles_Adapter.GetDisponibilidad();
+            return clientes_ventas_motosAdapter.GetMotos();
+        }
+        public static DataTable GetMotosDisponibilidad()
+        {
+            return clientes_ventas_motosAdapter.GetMotosDisponibilidad();
+        }
+
+        public static DataTable GetClientesByNombre(String nombre)
+        {
+            return clientes_ventas_motosAdapter.GetClientesByNombre(nombre);
+        }
+
+        public static DataTable GetClientes()
+        {
+            return clientes_ventas_motosAdapter.GetClientes();
+        }
+
+        public static DataTable GetFacturasByFechas(DateTime fecha1, DateTime fecha2)
+        {
+            return clientes_ventas_motosAdapter.GetDataByFechas(fecha1, fecha2);
         }
 
     }
-    
+
 }

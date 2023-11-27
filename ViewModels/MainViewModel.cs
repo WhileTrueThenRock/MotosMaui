@@ -2,9 +2,12 @@
 using CommunityToolkit.Mvvm.Input;
 using MauiMotos.DDBB;
 using MauiMotos.Utils;
+using Npgsql;
+using Syncfusion.Maui.Picker;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -17,19 +20,53 @@ namespace MauiMotos.ViewModels
         public MainViewModel()
         {
             listaFabricantes = new ObservableCollection<string>();
-            listaAccesorios = new ObservableCollection<string>();
-            cargarComboMarcas();
-            filtro = 0;
+            listaClientes = new ObservableCollection<string>();
+            CargarComboMarcas();
+            CargarComboClientes();
+            anioMenor = 1900;
+            anioMayor = 2024;
+            precioMenor = 0;
+            precioMayor = 0;
+            SwitchEstado = false;
+            fechaIni = DateTime.Now;
+            fechaFin = DateTime.Now;
         }
+
+        [ObservableProperty]
+        private DateTime pickerIni;
 
         [ObservableProperty]
         private ObservableCollection<string> listaFabricantes;
 
         [ObservableProperty]
-        private ObservableCollection<string> listaAccesorios;
+        private ObservableCollection<string> listaClientes;
 
         [ObservableProperty]
-        private int filtro;
+        private int anioMenor;
+
+        [ObservableProperty]
+        private int anioMayor;
+
+        [ObservableProperty]
+        private int precioMenor;
+
+        [ObservableProperty]
+        private int precioMayor;
+
+        [ObservableProperty]
+        private string resultadoPrecios;
+
+        [ObservableProperty]
+        private string resultadoFecha;
+
+        [ObservableProperty]
+        private Boolean switchEstado;
+
+        [ObservableProperty]
+        private DateTime fechaIni;
+
+        [ObservableProperty]
+        private DateTime fechaFin;
 
         [ObservableProperty]
         private string pDFData;
@@ -42,7 +79,7 @@ namespace MauiMotos.ViewModels
             DBManager.GetFabricantesModelos(), "Reports/FabricantesModelosReport.rdlc");
         }
 
-        public void cargarComboMarcas() //Solo para cargar el picker
+        public void CargarComboMarcas() //Solo para cargar el picker de motos
         {
             DataTable fabricantesModelosDT = DBManager.GetNombreFabricantes();
             ListaFabricantes = DBUtils.DataTableToCollection(fabricantesModelosDT, "Marcas");
@@ -51,10 +88,24 @@ namespace MauiMotos.ViewModels
 
 
         [RelayCommand] //Cargar el pdf de una marca seleccionada
-        public async Task LoadPicker(string marca)
+        public async Task LoadPickerMarcas(string marca)
         {
             PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet",
             DBManager.GetFabricantesByMarca(marca), "Reports/FabricantesModelosReport.rdlc");
+
+        }
+
+        public void CargarComboClientes() //Solo para cargar el picker de clientes
+        {
+            DataTable clientes = DBManager.GetClientes();
+            ListaClientes = DBUtils.DataTableToCollection(clientes, "Nombre");
+        }
+
+        [RelayCommand] //Cargar el pdf de un cliente seleccionado
+        public async Task LoadPickerClientes(string nombre)
+        {
+            PDFData = await ReportsUtils.GetReport("ClientesDataSet",
+            DBManager.GetClientesByNombre(nombre), "Reports/ClientesReport.rdlc");
 
         }
 
@@ -66,11 +117,19 @@ namespace MauiMotos.ViewModels
         }
 
         [RelayCommand]
+        public async Task GetAccesoriosByPrecio() //Esto hace referencia al boton de buscar todos los Accesorios
+        {
+            PDFData = await ReportsUtils.GetReport("AccesoriosDataSet",
+            DBManager.GetAccesoriosByPrecio(PrecioMenor, PrecioMayor), "Reports/AccesoriosReport.rdlc");
+            ResultadoPrecios = $"Precios filtrados: {PrecioMenor}€ - {PrecioMayor}€";
+        }
+
+        [RelayCommand]
         public async Task GetFabricantesByAnioGT() //Esto hace referencia al boton de buscar fabricantes mayor que >
         {
 
             PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet",
-            DBManager.GetAnioGT(filtro), "Reports/FabricantesModelosReport.rdlc");
+            DBManager.GetAnioGT(AnioMayor), "Reports/FabricantesModelosReport.rdlc");
 
         }
 
@@ -79,8 +138,17 @@ namespace MauiMotos.ViewModels
         {
 
             PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet",
-            DBManager.GetAnioLT(filtro), "Reports/FabricantesModelosReport.rdlc");
+            DBManager.GetAnioLT(AnioMenor), "Reports/FabricantesModelosReport.rdlc");
 
+        }
+
+        [RelayCommand]
+        public async Task GetFabricantesByAnioRange() //Esto hace referencia al boton de buscar por 2 intervalos
+        {
+            PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet",
+                DBManager.GetAnioRange(AnioMenor, AnioMayor),
+                "Reports/FabricantesModelosReport.rdlc");
+            ResultadoFecha = $"Años filtrados: {AnioMenor} - {AnioMayor}";
         }
 
         [RelayCommand]
@@ -93,12 +161,43 @@ namespace MauiMotos.ViewModels
         }
 
         [RelayCommand]
-        public async Task GetMotosDisponibles() //Esto hace referencia al boton de mostrar disponibilidad
+        public async Task GetFacturasByFecha() //Esto hace referencia al boton de buscar clientes y ventas de las motos
         {
 
-            PDFData = await ReportsUtils.GetReport("MotosDisponiblesDataSet",
-            DBManager.GetDisponibilidad(), "Reports/MotosDisponiblesReport.rdlc");
+            PDFData = await ReportsUtils.GetReport("FacturasFechasDataSet",
+            DBManager.GetFacturasByFechas(FechaIni, FechaFin), "Reports/FacturasFechasReport.rdlc");
 
+        }
+
+        [RelayCommand]
+        public async Task GetMotos() //Esto hace referencia al boton de mostrar motos totales
+        {
+            PDFData = await ReportsUtils.GetReport("MotosDataSet",
+            DBManager.GetMotos(), "Reports/MotosReport.rdlc");
+        }
+
+
+
+        [RelayCommand]
+        public async Task GetMotosDisponibles() //Esto hace referencia al boton de mostrar motos disponibles
+        {
+
+            try
+            {
+                if (SwitchEstado)
+                {
+                    PDFData = await ReportsUtils.GetReport("MotosDisponiblesDataSet",
+                    DBManager.GetMotosDisponibilidad(), "Reports/MotosDisponiblesReport.rdlc");
+                }
+                else
+                {
+                    GetMotos();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Otra excepción en GetMotosDisponibles: {ex.Message}");
+            }
         }
 
 
