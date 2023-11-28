@@ -175,6 +175,15 @@ WHERE        (precio &gt;= @precioMenor) AND (precio &lt;= @precioMayor)</Comman
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="motos" DbObjectName="motos.&quot;public&quot;.accesorios" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetNombreAccesorios" GetMethodModifier="Public" GetMethodName="GetNombreAccesorios" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetNombreAccesorios" UserSourceName="GetNombreAccesorios">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        nombre AS Nombre
+FROM            accesorios</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
             </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="clientes_ventas_motosTableAdapter" GeneratorDataComponentClassName="clientes_ventas_motosTableAdapter" Name="clientes_ventas_motos" UserDataComponentName="clientes_ventas_motosTableAdapter">

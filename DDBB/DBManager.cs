@@ -35,6 +35,12 @@ namespace MauiMotos.DDBB
             return accesorios_adapter.GetData();
         }
 
+        public static DataTable GetNombreAccesorios()
+        {
+            return accesorios_adapter.GetNombreAccesorios();
+
+        }
+
         public static DataTable GetAccesoriosByPrecio(int precioMenor, int precioMayor)
         {
             return accesorios_adapter.GetAccesoriosByPrecio(precioMenor, precioMayor);

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?> 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
@@ -150,6 +150,56 @@
                                          Margin="40,30,30,0" FontItalic="True" FontSize="20" />
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
+                    <!--PICKER CHIPS ACCESORIOS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+                                       <mdc:NavigationBarItem ActivedIconKind="Check" IconKind="Category" Text="Por Accesorios">
+                        <!--Contenedor para Multiples filtros-->
+                        <VerticalStackLayout  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
+
+                            <HorizontalStackLayout>
+                                <mdc:ComboBox 
+                                    WidthRequest="300"
+                                    Margin="0"
+                                    x:Name="cb_accesorios"
+                                    LabelText="Selecciona un accesorio..."
+                                    ItemsSource="{Binding ListaAccesorios}"/>
+                                <mdc:IconButton IconKind="Add"
+                                                Command="{Binding CargarFiltroAccesoriosCommand}"
+                                                CommandParameter="{Binding Source={x:Reference cb_accesorios},Path=Text}"/>
+                            </HorizontalStackLayout>
+                            <!--Salimos del comboBox y el boton añadir-->
+                            <CollectionView ItemsSource="{Binding ListaFiltrosAccesorios}"  
+                                            HeightRequest="290" WidthRequest="330" 
+                                            ItemsLayout="VerticalGrid,2">
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <FlexLayout Direction="Row" Wrap="Wrap" JustifyContent="SpaceBetween">
+                                            <mdc:Chip x:Name="accesorios_chip" Margin="0,0,0,0" 
+                                                      Style="{DynamicResource InputChipStyle}"
+                                                      Text="{Binding}"
+                                                      ForegroundColor="Yellow"
+                                                      IconColor="LightGreen"
+                                                      OutlineColor="GreenYellow">
+
+                                                <mdc:Chip.Behaviors>
+                                                    <toolkit:EventToCommandBehavior 
+                                                                                    BindingContext="{Binding Source={x:Reference accesorios_chip},Path=BindingContext}"
+                                                                                    Command="{Binding BorrarFiltroAccesoriosCommand}"
+                                                                                    EventName="Closed" 
+                                                                                    CommandParameter="{Binding Source={x:Reference accesorios_chip,accesorios_chip}, Path=Text}"/>
+                                                </mdc:Chip.Behaviors>
+                                            </mdc:Chip>
+                                        </FlexLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                            <mdc:Button Text="Filtrar"  WidthRequest="200"  /> 
+                        </VerticalStackLayout>
+
+                    </mdc:NavigationBarItem>
+
+                    <!--FINALIZA PICKER CHIPS ACCESORIOS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
                 </mdc:NavigationBar>
             </mdc:TabItem>
             <!--Finaliza el SEGUNDO TAB-->

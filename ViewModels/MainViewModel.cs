@@ -21,8 +21,11 @@ namespace MauiMotos.ViewModels
         {
             listaFabricantes = new ObservableCollection<string>();
             listaClientes = new ObservableCollection<string>();
+            listaAccesorios = new ObservableCollection<string>();
+            listaFiltrosAccesorios = new ObservableCollection<string>();
             CargarComboMarcas();
             CargarComboClientes();
+            CargarComboAccesorios();
             anioMenor = 1900;
             anioMayor = 2024;
             precioMenor = 0;
@@ -31,7 +34,7 @@ namespace MauiMotos.ViewModels
             fechaIni = DateTime.Now;
             fechaFin = DateTime.Now;
             imagenSeleccionada = "";
-            
+
         }
 
 
@@ -46,6 +49,12 @@ namespace MauiMotos.ViewModels
 
         [ObservableProperty]
         private ObservableCollection<string> listaClientes;
+
+        [ObservableProperty]
+        private ObservableCollection<string> listaAccesorios;
+
+        [ObservableProperty]
+        private ObservableCollection<string> listaFiltrosAccesorios;
 
         [ObservableProperty]
         private int anioMenor;
@@ -90,8 +99,6 @@ namespace MauiMotos.ViewModels
             DataTable fabricantesModelosDT = DBManager.GetNombreFabricantes();
             ListaFabricantes = DBUtils.DataTableToCollection(fabricantesModelosDT, "Marcas");
         }
-
-
 
         [RelayCommand] //Cargar el pdf de una marca seleccionada
         public async Task LoadPickerMarcas(string marca)
@@ -157,7 +164,31 @@ namespace MauiMotos.ViewModels
 
         }
 
+        public void CargarComboAccesorios() //Solo para cargar el picker de accesorios
+        {
+            DataTable accesorios = DBManager.GetNombreAccesorios();
+            ListaAccesorios = DBUtils.DataTableToCollection(accesorios, "Nombre");
+        }
+
         [RelayCommand]
+        public void CargarFiltroAccesorios(string accesorio)
+        {
+            if (accesorio != null)
+            {
+                if (!ListaFiltrosAccesorios.Contains(accesorio))
+                {
+                    ListaFiltrosAccesorios.Add(accesorio);
+                }
+            }
+        }
+        [RelayCommand]
+        public void BorrarFiltroAccesorios(string accesorio)
+        {
+            ListaFiltrosAccesorios.Remove(accesorio);
+        }
+
+
+    [RelayCommand]
         public async Task GetAccesoriosAsync() //Esto hace referencia al boton de buscar todos los Accesorios
         {
             PDFData = await ReportsUtils.GetReport("AccesoriosDataSet",
@@ -229,9 +260,6 @@ namespace MauiMotos.ViewModels
         [RelayCommand]
         public async Task GetMotosDisponibles() //Esto hace referencia al boton de mostrar motos disponibles
         {
-
-            try
-            {
                 if (SwitchEstado)
                 {
                     PDFData = await ReportsUtils.GetReport("MotosDisponiblesDataSet",
@@ -242,13 +270,5 @@ namespace MauiMotos.ViewModels
                     GetMotos();
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Otra excepción en GetMotosDisponibles: {ex.Message}");
-            }
-        }
-
-
-
     }
 }

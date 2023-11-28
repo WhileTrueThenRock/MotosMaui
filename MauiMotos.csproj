@@ -97,6 +97,15 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>MotosDataSet.xsd</DependentUpon>
 		</Compile>
+		<Compile Update="Views\FrontPage.xaml.cs">
+		  <DependentUpon>FrontPage.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\FrontPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
