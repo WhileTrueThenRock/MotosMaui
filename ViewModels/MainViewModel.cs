@@ -2,17 +2,12 @@
 using CommunityToolkit.Mvvm.Input;
 using MauiMotos.DDBB;
 using MauiMotos.Utils;
-using Npgsql;
-using Syncfusion.Maui.Picker;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Syncfusion.Maui.Core;
+using Material.Components.Maui;
+using SkiaSharp.Views.Maui;
+using System.Security.Cryptography;
 namespace MauiMotos.ViewModels
 {
     internal partial class MainViewModel : ObservableObject
@@ -35,8 +30,22 @@ namespace MauiMotos.ViewModels
             fechaFin = DateTime.Now;
             imagenSeleccionada = "";
 
+            chipsSeleccionado = "casco.png";
+
+
+
+        }
+        private void Chip_Touch(object sender, SKTouchEventArgs e)
+        {
+            if (sender is Chip)
+    {
+                // Acciones al hacer clic en el chip (por ejemplo, cambiar la imagen)
+                ChipsSeleccionado = "casco.png";
+            }
         }
 
+        [ObservableProperty]
+        private string chipsSeleccionado;
 
         [ObservableProperty]
         private string imagenSeleccionada;
@@ -85,6 +94,7 @@ namespace MauiMotos.ViewModels
 
         [ObservableProperty]
         private string pDFData;
+
         //Te obliga a ser privada y que empieze en minúscula, Equivalente a public string PDFData {get,set}
 
         [RelayCommand]

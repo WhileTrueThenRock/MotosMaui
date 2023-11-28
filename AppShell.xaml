@@ -7,12 +7,12 @@
     xmlns:local="clr-namespace:MauiMotos"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
+    <!--<ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
+            Route="MainPage" />-->
 
-    <!--<TabBar>
+    <TabBar>
         <Tab Title="PDF Consulting">
             <ShellContent
              Title="Consultas"
@@ -20,8 +20,11 @@
              Route="FrontPage" />
         </Tab>
         <Tab Title="Home">
-
+            <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
         </Tab>
-    </TabBar>-->
+    </TabBar>
 
 </Shell>

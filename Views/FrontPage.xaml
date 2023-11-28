@@ -4,14 +4,15 @@
              xmlns:viewmodels="clr-namespace:MauiMotos.ViewModels"
              x:DataType="viewmodels:FrontViewModel"
              x:Class="MauiMotos.FrontPage"
+             BackgroundImageSource="background2.jpg"
              Title="NewPage1">
     <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
         <Label Text="Iniciar Sesión" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
 
         <Entry x:Name="EntryUsuario" Placeholder="Usuario" Margin="0,0,0,10"/>
         <Entry x:Name="EntryPassword" Placeholder="Contraseña" IsPassword="True" Margin="0,0,0,10"/>
-
-        <Button Text="Iniciar Sesión" BackgroundColor="#4CAF50" TextColor="White"/>
+        
+        <Button Text="Iniciar Sesión" BackgroundColor="#4CAF50" TextColor="White" Command="{Binding NavegarCommand}" CommandParameter="MainPage"/>
 
         <Label Text="¿Olvidaste tu contraseña?" TextColor="#2196F3" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0"/>
     </StackLayout>

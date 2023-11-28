@@ -492,7 +492,6 @@
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>20pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <Color>White</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -509,7 +508,6 @@
           <Border>
             <Style>None</Style>
           </Border>
-          <BackgroundColor>Gray</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>

@@ -11,5 +11,9 @@ namespace MauiMotos
             BindingContext = new MainViewModel();
         }
 
+        private void accesorios_chip_Touch(object sender, SkiaSharp.Views.Maui.SKTouchEventArgs e)
+        {
+
+        }
     }
 }

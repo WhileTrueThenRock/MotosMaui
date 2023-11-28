@@ -7,7 +7,9 @@
              x:DataType="viewmodels:MainViewModel"
              xmlns:sliders="clr-namespace:Syncfusion.Maui.Sliders;assembly=Syncfusion.Maui.Sliders"
              xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+             xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              x:Name="mainpage"
+              BackgroundImageSource="background2.jpg"
              x:Class="MauiMotos.MainPage"
              >
 
@@ -194,6 +196,7 @@
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
+                            <chip:SfChip WidthRequest="100" Text="Chip" x:Name="chips"  BackgroundImageSource="{Binding ChipsSeleccionado}" />
                             <mdc:Button Text="Filtrar"  WidthRequest="200"  /> 
                         </VerticalStackLayout>
 
