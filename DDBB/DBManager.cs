@@ -42,9 +42,9 @@ namespace MauiMotos.DDBB
 
         }
 
-        public static DataTable GetAccesoriosByNombre(ObservableCollection<string>listaAccesorios)
+        public static DataTable GetAccesoriosByNombre(String accesorio)
         {
-            return accesorios_adapter.GetAccesoriosByNombre(listaAccesorios);
+            return accesorios_adapter.GetAccesoriosByNombre(accesorio);
         }
 
         public static DataTable GetAccesoriosByPrecio(int precioMenor, int precioMayor)

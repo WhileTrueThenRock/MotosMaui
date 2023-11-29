@@ -29,13 +29,14 @@ namespace MauiMotos.ViewModels
             fechaIni = DateTime.Now;
             fechaFin = DateTime.Now;
             imagenSeleccionada = "";
-
+            accesorio = "";
             chipsSeleccionado = "casco.png";
 
-
+            
 
         }
-
+        [ObservableProperty]
+        private string accesorio;
 
         [ObservableProperty]
         private string chipsSeleccionado;
@@ -198,12 +199,30 @@ namespace MauiMotos.ViewModels
         {
             try
             {
-                PDFData = await ReportsUtils.GetReport("AccesoriosDataSet",
-                    DBManager.GetAccesoriosByNombre(ListaFiltrosAccesorios), "Reports/AccesoriosReport.rdlc");
+                if (ListaFiltrosAccesorios.Count > 0)
+                {
+                    // Obtén el primer chip seleccionado
+                    //hazme un bucle for que el selectedCHip retorne el nombre de todos los chips seleccionados del combobox
+                    for (int i = 0; i < ListaFiltrosAccesorios.Count; i++)
+                    {
+                        Accesorio = ListaFiltrosAccesorios[i];
+                       
+                    }
+                     PDFData = await ReportsUtils.GetReport("AccesoriosDataSet",
+                        DBManager.GetAccesoriosByNombre(Accesorio), "Reports/AccesoriosReport.rdlc");
+                       // string selectedChip = ListaFiltrosAccesorios[0];
+
+                   
+                }
+                else
+                {
+                    // Opcionalmente maneja el caso en el que no se ha seleccionado ningún chip
+                    Console.WriteLine("No hay chips seleccionados.");
+                }
             }
             catch (Exception ex)
             {
-                // Manejar la excepción según tus necesidades (por ejemplo, mostrar un mensaje al usuario)
+                // Maneja la excepción según tus necesidades (por ejemplo, muestra un mensaje al usuario)
                 Console.WriteLine($"Error al cargar accesorios: {ex.Message}");
             }
 

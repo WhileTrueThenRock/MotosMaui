@@ -246,7 +246,10 @@
                                 BackgroundImageSource="{Binding ChipsSeleccionado}"
                                 Text="Chip"
                                 WidthRequest="100" />
-                            <!--<mdc:Button Text="Filtrar"  WidthRequest="200" Command="{Binding LoadAccesoriosCommand}" />-->
+                            <mdc:Button
+                                Command="{Binding LoadAccesoriosCommand}"
+                                Text="Filtrar"
+                                WidthRequest="200" />
                         </VerticalStackLayout>
 
                     </mdc:NavigationBarItem>
