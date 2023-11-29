@@ -65,12 +65,25 @@
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
+
                                         <FlexLayout
                                             Direction="Row"
                                             JustifyContent="SpaceBetween"
                                             Wrap="Wrap">
-                                            <!--  Use Label instead of TextBlock  -->
-                                            <Label BackgroundColor="Black" Text="{Binding TextChipName}" />
+                                            <chip:SfChip
+                                                x:Name="accesorios_chip"
+                                                Margin="0,0,0,0"
+                                                Style="{DynamicResource InputChipStyle}"
+                                                Text="{Binding}">
+
+                                                <chip:SfChip.Behaviors>
+                                                    <toolkit:EventToCommandBehavior
+                                                        BindingContext="{Binding Source={x:Reference accesorios_chip}, Path=BindingContext}"
+                                                        Command="{Binding BorrarFiltroAccesoriosCommand}"
+                                                        CommandParameter="{Binding Source={x:Reference accesorios_chip, accesorios_chip}, Path=Text}"
+                                                        EventName="Closed" />
+                                                </chip:SfChip.Behaviors>
+                                            </chip:SfChip>
                                         </FlexLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
