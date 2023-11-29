@@ -1,19 +1,85 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:MauiMotos.ViewModels"
-             x:DataType="viewmodels:FrontViewModel"
-             x:Class="MauiMotos.FrontPage"
-             BackgroundImageSource="background2.jpg"
-             Title="NewPage1">
-    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-        <Label Text="Iniciar Sesión" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
+<ContentPage
+    x:Class="MauiMotos.FrontPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+    xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+    xmlns:sliders="clr-namespace:Syncfusion.Maui.Sliders;assembly=Syncfusion.Maui.Sliders"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodels="clr-namespace:MauiMotos.ViewModels"
+    x:Name="frontpage"
+    Title="Skibidibi"
+    x:DataType="viewmodels:FrontViewModel"
+    BackgroundImageSource="background2.jpg">
 
-        <Entry x:Name="EntryUsuario" Placeholder="Usuario" Margin="0,0,0,10"/>
-        <Entry x:Name="EntryPassword" Placeholder="Contraseña" IsPassword="True" Margin="0,0,0,10"/>
-        
-        <Button Text="Iniciar Sesión" BackgroundColor="#4CAF50" TextColor="White" Command="{Binding NavegarCommand}" CommandParameter="MainPage"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="540" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <Label Text="¿Olvidaste tu contraseña?" TextColor="#2196F3" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0"/>
-    </StackLayout>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="350" />
+            <ColumnDefinition Width="900" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--  Iniciamos el apartado de Tabs  -->
+        <mdc:Tabs
+            Grid.Row="1"
+            Grid.Column="1"
+            Background="AliceBlue"
+            Style="{DynamicResource filledTabsStyle}">
+            <!--  Consulta General de Marcas y modelos  -->
+            <mdc:TabItem IconKind="Bookmarks" Text="Marcas y Modelos">
+                <mdc:NavigationBar>
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="Category"
+                        Text="Por Accesorios">
+
+                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference frontpage}, Path=BindingContext}">
+
+                            <HorizontalStackLayout>
+                                <mdc:ComboBox
+                                    x:Name="cb_accesorios"
+                                    Margin="0"
+                                    ItemsSource="{Binding ListaAccesorios}"
+                                    LabelText="Selecciona un accesorio..."
+                                    WidthRequest="300" />
+                                <mdc:IconButton
+                                    Command="{Binding CargarFiltroAccesoriosCommand}"
+                                    CommandParameter="{Binding Source={x:Reference cb_accesorios}, Path=Text}"
+                                    IconKind="Add" />
+                            </HorizontalStackLayout>
+                            <!--  Salimos del comboBox y el boton añadir  -->
+                            <CollectionView
+                                HeightRequest="290"
+                                ItemsLayout="VerticalGrid,2"
+                                ItemsSource="{Binding ListaFiltrosAccesorios}"
+                                WidthRequest="330">
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <FlexLayout
+                                            Direction="Row"
+                                            JustifyContent="SpaceBetween"
+                                            Wrap="Wrap">
+                                            <!--  Use Label instead of TextBlock  -->
+                                            <Label BackgroundColor="Black" Text="{Binding TextChipName}" />
+                                        </FlexLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </VerticalStackLayout>
+                    </mdc:NavigationBarItem>
+                </mdc:NavigationBar>
+            </mdc:TabItem>
+        </mdc:Tabs>
+    </Grid>
 </ContentPage>

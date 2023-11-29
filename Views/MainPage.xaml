@@ -1,291 +1,368 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:viewmodels="clr-namespace:MauiMotos.ViewModels"
-             x:DataType="viewmodels:MainViewModel"
-             xmlns:sliders="clr-namespace:Syncfusion.Maui.Sliders;assembly=Syncfusion.Maui.Sliders"
-             xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
-             xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
-             x:Name="mainpage"
-              BackgroundImageSource="background2.jpg"
-             x:Class="MauiMotos.MainPage"
-             >
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiMotos.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+    xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+    xmlns:sliders="clr-namespace:Syncfusion.Maui.Sliders;assembly=Syncfusion.Maui.Sliders"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodels="clr-namespace:MauiMotos.ViewModels"
+    x:Name="mainpage"
+    x:DataType="viewmodels:MainViewModel"
+    BackgroundImageSource="background2.jpg">
 
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="540"/>
-            <RowDefinition/>
+            <RowDefinition Height="540" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="350"/>
-            <ColumnDefinition Width="900"/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="350" />
+            <ColumnDefinition Width="900" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <!--Iniciamos el apartado de Tabs-->
-        <mdc:Tabs   Background="AliceBlue"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Style="{DynamicResource filledTabsStyle}">
-            <!--Consulta General de Marcas y modelos-->
-            <mdc:TabItem IconKind="Bookmarks"  Text="Marcas y Modelos">
+        <!--  Iniciamos el apartado de Tabs  -->
+        <mdc:Tabs
+            Grid.Row="1"
+            Grid.Column="1"
+            Background="AliceBlue"
+            Style="{DynamicResource filledTabsStyle}">
+            <!--  Consulta General de Marcas y modelos  -->
+            <mdc:TabItem IconKind="Bookmarks" Text="Marcas y Modelos">
                 <mdc:NavigationBar>
-                    <mdc:NavigationBarItem ActivedIconKind="Check" 
-                                       IconKind="CarRental" 
-                                       Text="Informe General">
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="CarRental"
+                        Text="Informe General">
 
-                        <VerticalStackLayout  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
-                            <!--Boton general de marcas y modelos eliminado y sustituido por Ver disponibilidad-->
-                            <HorizontalStackLayout Spacing="90" >
-                                <mdc:Label Text="Motos Disponibles" ForegroundColor="Black"/>
-                                <mdc:Switch  HasIcon="True" IsChecked="{Binding SwitchEstado, Mode=TwoWay}"/>
+                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
+                            <!--  Boton general de marcas y modelos eliminado y sustituido por Ver disponibilidad  -->
+                            <HorizontalStackLayout Spacing="90">
+                                <mdc:Label ForegroundColor="Black" Text="Motos Disponibles" />
+                                <mdc:Switch HasIcon="True" IsChecked="{Binding SwitchEstado, Mode=TwoWay}" />
                             </HorizontalStackLayout>
-                            <mdc:Button   
-                                          WidthRequest="200" 
-                                          Text="Consultar catálogo"
-                                          IconKind="Search" 
-                                          Command="{Binding GetMotosDisponiblesCommand}"/>
+                            <mdc:Button
+                                Command="{Binding GetMotosDisponiblesCommand}"
+                                IconKind="Search"
+                                Text="Consultar catálogo"
+                                WidthRequest="200" />
                         </VerticalStackLayout>
 
                     </mdc:NavigationBarItem>
-                    <!--Por fecha de Fabricaçao-->
-                    <mdc:NavigationBarItem ActivedIconKind="Check" 
-                    IconKind="CarRental" 
-                    Text="Por Fecha de Fabricación">
+                    <!--  Por fecha de Fabricaçao  -->
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="CarRental"
+                        Text="Por Fecha de Fabricación">
 
-                        <VerticalStackLayout  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
-                            <!--Boton para filtrar por fecha fabricacion-->
+                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
+                            <!--  Boton para filtrar por fecha fabricacion  -->
                             <HorizontalStackLayout>
-                                <sliders:SfRangeSlider HorizontalOptions="Start"
-                                                   Minimum="1900"
-                                                   Maximum="2030"
-                                                   RangeStart="{Binding AnioMenor}"
-                                                   RangeEnd="{Binding AnioMayor}"
-                                                   Interval="10"
-                                                   MinorTicksPerInterval="1"
-                                                   ShowLabels="True"
-                                                   ShowTicks="True"
-                                                   Orientation="Vertical" />
+                                <sliders:SfRangeSlider
+                                    HorizontalOptions="Start"
+                                    Interval="10"
+                                    Maximum="2030"
+                                    Minimum="1900"
+                                    MinorTicksPerInterval="1"
+                                    Orientation="Vertical"
+                                    RangeEnd="{Binding AnioMayor}"
+                                    RangeStart="{Binding AnioMenor}"
+                                    ShowLabels="True"
+                                    ShowTicks="True" />
 
-                                <mdc:Label Text="{Binding ResultadoFecha}" ForegroundColor="Black" 
-                                       VerticalOptions="Start"  Margin="40,0,0,0" FontItalic="True" FontSize="16"/>
+                                <mdc:Label
+                                    Margin="40,0,0,0"
+                                    FontItalic="True"
+                                    FontSize="16"
+                                    ForegroundColor="Black"
+                                    Text="{Binding ResultadoFecha}"
+                                    VerticalOptions="Start" />
                             </HorizontalStackLayout>
 
-                            <mdc:Button Style="{DynamicResource FilledTonalButtonStyle}"
-                                    WidthRequest="200" 
-                                    Text="Filtrar"
-                                    IconKind="Search" 
-                                    Command="{Binding GetFabricantesByAnioRangeCommand}"/>
+                            <mdc:Button
+                                Command="{Binding GetFabricantesByAnioRangeCommand}"
+                                IconKind="Search"
+                                Style="{DynamicResource FilledTonalButtonStyle}"
+                                Text="Filtrar"
+                                WidthRequest="200" />
 
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
-                    <!--Consulta por Marcas -->
-                    <mdc:NavigationBarItem ActivedIconKind="Check" 
-                                           IconKind="Motorcycle" 
-                                           Text="Por Marcas">
+                    <!--  Consulta por Marcas  -->
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="Motorcycle"
+                        Text="Por Marcas">
 
-                        <VerticalStackLayout 
-                                    BindingContext="{Binding Source={x:Reference mainpage},
-                                    Path=BindingContext}">
-                            <mdc:Label Text="Selecciona una marca" ForegroundColor="Black" HorizontalOptions="Center" FontSize="16" />
-                            <Picker ItemsSource="{Binding ListaFabricantes}" 
-                                    x:Name="cb_marcas" Background="LightBlue" 
-                                    WidthRequest="200"
-                                    BackgroundColor="Black">
+                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
+                            <mdc:Label
+                                FontSize="16"
+                                ForegroundColor="Black"
+                                HorizontalOptions="Center"
+                                Text="Selecciona una marca" />
+                            <Picker
+                                x:Name="cb_marcas"
+                                Background="LightBlue"
+                                BackgroundColor="Black"
+                                ItemsSource="{Binding ListaFabricantes}"
+                                WidthRequest="200">
                                 <Picker.Behaviors>
                                     <toolkit:EventToCommandBehavior
-                                        EventName="SelectedIndexChanged"
-                                        Command="{Binding LoadPickerMarcasCommand}" 
-                                        CommandParameter="{Binding Source={x:Reference cb_marcas }, Path=SelectedItem}"/>
+                                        Command="{Binding LoadPickerMarcasCommand}"
+                                        CommandParameter="{Binding Source={x:Reference cb_marcas}, Path=SelectedItem}"
+                                        EventName="SelectedIndexChanged" />
                                 </Picker.Behaviors>
                             </Picker>
-                            <Image  Source="{Binding ImagenSeleccionada}"  
-                                   HeightRequest="250"
-                           WidthRequest="270" HorizontalOptions="Center"/>
+                            <Image
+                                HeightRequest="250"
+                                HorizontalOptions="Center"
+                                Source="{Binding ImagenSeleccionada}"
+                                WidthRequest="270" />
 
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
                 </mdc:NavigationBar>
             </mdc:TabItem>
-            <!--Finaliza  el primer TAB-->
+            <!--  Finaliza  el primer TAB  -->
 
             <mdc:TabItem IconKind="Watch" Text="Accesorios">
                 <mdc:NavigationBar>
-                    <mdc:NavigationBarItem Text="Todos los Accesorios" IconKind="Watch" ActivedIconKind="Check" >
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="Watch"
+                        Text="Todos los Accesorios">
 
-                        <VerticalStackLayout  HeightRequest="400"  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
-                            <!--Boton para filtrar por Accesorios-->
-                            <mdc:Label Text="Listado de Accesorios" ForegroundColor="Black"/>
-                            <mdc:Button WidthRequest="200" 
-                                        Text="Buscar"
-                                        HorizontalOptions="Center"
-                                        IconKind="Search"
-                                        Command="{Binding GetAccesoriosCommand}"/>
+                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}" HeightRequest="400">
+                            <!--  Boton para filtrar por Accesorios  -->
+                            <mdc:Label ForegroundColor="Black" Text="Listado de Accesorios" />
+                            <mdc:Button
+                                Command="{Binding GetAccesoriosCommand}"
+                                HorizontalOptions="Center"
+                                IconKind="Search"
+                                Text="Buscar"
+                                WidthRequest="200" />
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
-                    <mdc:NavigationBarItem Text="Por precio" IconKind="Euro" ActivedIconKind="Check" >
-                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
-                            <mdc:Label Text="Rango de precios" ForegroundColor="Black"  Margin="0,50,0,0"/>
-                            <sliders:SfRangeSlider HorizontalOptions="Center" Margin="10,0,0,10"
-                                                   Minimum="0"
-                                                   Maximum="300"
-                                                   RangeStart="{Binding PrecioMenor}"
-                                                   RangeEnd="{Binding PrecioMayor}"
-                                                   NumberFormat="#€"
-                                                   Interval="10"
-                                                   MinorTicksPerInterval="1"
-                                                   ShowLabels="True"
-                                                   ShowTicks="True"
-                                                   Orientation="Horizontal" />
-                            <mdc:Button  WidthRequest="200" 
-                                         Text="Filtrar"
-                                         HorizontalOptions="Center"
-                                         IconKind="Search"
-                                         Command="{Binding GetAccesoriosByPrecioCommand}"/>
-                            <mdc:Label Text="{Binding ResultadoPrecios}" ForegroundColor="Black" 
-                                         Margin="40,30,30,0" FontItalic="True" FontSize="20" />
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="Euro"
+                        Text="Por precio">
+                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
+                            <mdc:Label
+                                Margin="0,50,0,0"
+                                ForegroundColor="Black"
+                                Text="Rango de precios" />
+                            <sliders:SfRangeSlider
+                                Margin="10,0,0,10"
+                                HorizontalOptions="Center"
+                                Interval="10"
+                                Maximum="300"
+                                Minimum="0"
+                                MinorTicksPerInterval="1"
+                                NumberFormat="#€"
+                                Orientation="Horizontal"
+                                RangeEnd="{Binding PrecioMayor}"
+                                RangeStart="{Binding PrecioMenor}"
+                                ShowLabels="True"
+                                ShowTicks="True" />
+                            <mdc:Button
+                                Command="{Binding GetAccesoriosByPrecioCommand}"
+                                HorizontalOptions="Center"
+                                IconKind="Search"
+                                Text="Filtrar"
+                                WidthRequest="200" />
+                            <mdc:Label
+                                Margin="40,30,30,0"
+                                FontItalic="True"
+                                FontSize="20"
+                                ForegroundColor="Black"
+                                Text="{Binding ResultadoPrecios}" />
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
-                    <!--PICKER CHIPS ACCESORIOS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
-                                       <mdc:NavigationBarItem ActivedIconKind="Check" IconKind="Category" Text="Por Accesorios">
-                        <!--Contenedor para Multiples filtros-->
-                        <VerticalStackLayout  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
+                    <!--  PICKER CHIPS ACCESORIOS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  -->
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="Category"
+                        Text="Por Accesorios">
+                        <!--  Contenedor para Multiples filtros  -->
+                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
 
                             <HorizontalStackLayout>
-                                <mdc:ComboBox 
-                                    WidthRequest="300"
-                                    Margin="0"
+                                <mdc:ComboBox
                                     x:Name="cb_accesorios"
+                                    Margin="0"
+                                    ItemsSource="{Binding ListaAccesorios}"
                                     LabelText="Selecciona un accesorio..."
-                                    ItemsSource="{Binding ListaAccesorios}"/>
-                                <mdc:IconButton IconKind="Add"
-                                                Command="{Binding CargarFiltroAccesoriosCommand}"
-                                                CommandParameter="{Binding Source={x:Reference cb_accesorios},Path=Text}"/>
+                                    WidthRequest="300" />
+                                <mdc:IconButton
+                                    Command="{Binding CargarFiltroAccesoriosCommand}"
+                                    CommandParameter="{Binding Source={x:Reference cb_accesorios}, Path=Text}"
+                                    IconKind="Add" />
                             </HorizontalStackLayout>
-                            <!--Salimos del comboBox y el boton añadir-->
-                            <CollectionView ItemsSource="{Binding ListaFiltrosAccesorios}"  
-                                            HeightRequest="290" WidthRequest="330" 
-                                            ItemsLayout="VerticalGrid,2">
+                            <!--  Salimos del comboBox y el boton añadir  -->
+                            <CollectionView
+                                HeightRequest="290"
+                                ItemsLayout="VerticalGrid,2"
+                                ItemsSource="{Binding ListaFiltrosAccesorios}"
+                                WidthRequest="330">
 
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
 
-                                        <FlexLayout Direction="Row" Wrap="Wrap" JustifyContent="SpaceBetween">
-                                            <mdc:Chip x:Name="accesorios_chip" Margin="0,0,0,0" 
-                                                      Style="{DynamicResource InputChipStyle}"
-                                                      Text="{Binding}"
-                                                      ForegroundColor="Yellow"
-                                                      IconColor="LightGreen"
-                                                      OutlineColor="GreenYellow">
+                                        <FlexLayout
+                                            Direction="Row"
+                                            JustifyContent="SpaceBetween"
+                                            Wrap="Wrap">
+                                            <mdc:Chip
+                                                x:Name="accesorios_chip"
+                                                Margin="0,0,0,0"
+                                                ForegroundColor="Yellow"
+                                                IconColor="LightGreen"
+                                                OutlineColor="GreenYellow"
+                                                Style="{DynamicResource InputChipStyle}"
+                                                Text="{Binding}">
 
                                                 <mdc:Chip.Behaviors>
-                                                    <toolkit:EventToCommandBehavior 
-                                                                                    BindingContext="{Binding Source={x:Reference accesorios_chip},Path=BindingContext}"
-                                                                                    Command="{Binding BorrarFiltroAccesoriosCommand}"
-                                                                                    EventName="Closed" 
-                                                                                    CommandParameter="{Binding Source={x:Reference accesorios_chip,accesorios_chip}, Path=Text}"/>
+                                                    <toolkit:EventToCommandBehavior
+                                                        BindingContext="{Binding Source={x:Reference accesorios_chip}, Path=BindingContext}"
+                                                        Command="{Binding BorrarFiltroAccesoriosCommand}"
+                                                        CommandParameter="{Binding Source={x:Reference accesorios_chip, accesorios_chip}, Path=Text}"
+                                                        EventName="Closed" />
                                                 </mdc:Chip.Behaviors>
                                             </mdc:Chip>
                                         </FlexLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-                            <chip:SfChip WidthRequest="100" Text="Chip" x:Name="chips"  BackgroundImageSource="{Binding ChipsSeleccionado}" />
-                            <mdc:Button Text="Filtrar"  WidthRequest="200"  /> 
+                            <chip:SfChip
+                                x:Name="chips"
+                                BackgroundImageSource="{Binding ChipsSeleccionado}"
+                                Text="Chip"
+                                WidthRequest="100" />
+                            <!--<mdc:Button Text="Filtrar"  WidthRequest="200" Command="{Binding LoadAccesoriosCommand}" />-->
                         </VerticalStackLayout>
 
                     </mdc:NavigationBarItem>
 
-                    <!--FINALIZA PICKER CHIPS ACCESORIOS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+                    <!--  FINALIZA PICKER CHIPS ACCESORIOS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  -->
                 </mdc:NavigationBar>
             </mdc:TabItem>
-            <!--Finaliza el SEGUNDO TAB-->
+            <!--  Finaliza el SEGUNDO TAB  -->
             <mdc:TabItem IconKind="AttachMoney" Text="Ventas">
                 <mdc:NavigationBar>
-                    <mdc:NavigationBarItem Text="Todas las ventas" IconKind="Money" ActivedIconKind="Check" >
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="Money"
+                        Text="Todas las ventas">
 
-                        <VerticalStackLayout  HeightRequest="200"  BindingContext="{Binding Source={x:Reference mainpage},Path=BindingContext}">
-                            <!--Boton para filtrar por fecha fabricacion-->
-                            <mdc:Label Text="Todas las ventas" ForegroundColor="Black" FontSize="24" FontItalic="True" />
-                            <mdc:Button WidthRequest="200" 
-                            Text="Buscar"
-                            HorizontalOptions="Center"
-                            IconKind="Search"
-                            Command="{Binding GetClientesVentasMotosCommand}"/>
+                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}" HeightRequest="200">
+                            <!--  Boton para filtrar por fecha fabricacion  -->
+                            <mdc:Label
+                                FontItalic="True"
+                                FontSize="24"
+                                ForegroundColor="Black"
+                                Text="Todas las ventas" />
+                            <mdc:Button
+                                Command="{Binding GetClientesVentasMotosCommand}"
+                                HorizontalOptions="Center"
+                                IconKind="Search"
+                                Text="Buscar"
+                                WidthRequest="200" />
                         </VerticalStackLayout>
-                        <!--Filtrado por clientes-->
+                        <!--  Filtrado por clientes  -->
                     </mdc:NavigationBarItem>
-                    <mdc:NavigationBarItem Text="Por Cliente" IconKind="Person" ActivedIconKind="Check" >
-                        <VerticalStackLayout 
-                                             BindingContext="{Binding Source={x:Reference mainpage},
-                                             Path=BindingContext}"
-                                             Grid.Row="2" 
-                                             Grid.Column="1">
-                            <mdc:Label Text="Selecciona un cliente" ForegroundColor="Black" HorizontalOptions="Center" FontSize="16" />
-                            <Picker ItemsSource="{Binding ListaClientes}" 
-                                             x:Name="cb_clientes" Background="LightBlue" 
-                                             WidthRequest="200"
-                                             BackgroundColor="Black">
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="Person"
+                        Text="Por Cliente">
+                        <VerticalStackLayout
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
+                            <mdc:Label
+                                FontSize="16"
+                                ForegroundColor="Black"
+                                HorizontalOptions="Center"
+                                Text="Selecciona un cliente" />
+                            <Picker
+                                x:Name="cb_clientes"
+                                Background="LightBlue"
+                                BackgroundColor="Black"
+                                ItemsSource="{Binding ListaClientes}"
+                                WidthRequest="200">
                                 <Picker.Behaviors>
                                     <toolkit:EventToCommandBehavior
-                                                 EventName="SelectedIndexChanged"
-                                                 Command="{Binding LoadPickerClientesCommand}" 
-                                                 CommandParameter="{Binding Source={x:Reference cb_clientes }, Path=SelectedItem}"/>
+                                        Command="{Binding LoadPickerClientesCommand}"
+                                        CommandParameter="{Binding Source={x:Reference cb_clientes}, Path=SelectedItem}"
+                                        EventName="SelectedIndexChanged" />
                                 </Picker.Behaviors>
                             </Picker>
                         </VerticalStackLayout>
-                        <!--Filtrado por Fechas-->
+                        <!--  Filtrado por Fechas  -->
                     </mdc:NavigationBarItem>
-                    <mdc:NavigationBarItem Text="Por Fecha" IconKind="CalendarMonth" ActivedIconKind="Check" >
+                    <mdc:NavigationBarItem
+                        ActivedIconKind="Check"
+                        IconKind="CalendarMonth"
+                        Text="Por Fecha">
 
-                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage},
-                                            Path=BindingContext}"
-                                            Grid.Row="2" 
-                                            Grid.Column="1">
+                        <VerticalStackLayout
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
 
                             <!--<DatePicker TextColor="Black" Date="{Binding FechaIni}" />-->
                             <!--<DatePicker TextColor="Black" Date="{Binding FechaFin}" />-->
 
-                            <picker:SfDatePicker x:Name="pickerIni"  HeightRequest="150" WidthRequest="300" SelectedDate="{Binding FechaIni,Mode=TwoWay}"  >
+                            <picker:SfDatePicker
+                                x:Name="pickerIni"
+                                HeightRequest="150"
+                                SelectedDate="{Binding FechaIni, Mode=TwoWay}"
+                                WidthRequest="300">
                                 <picker:SfDatePicker.HeaderView>
-                                    <picker:PickerHeaderView Text="Desde" Height="40" />
+                                    <picker:PickerHeaderView Height="40" Text="Desde" />
                                 </picker:SfDatePicker.HeaderView>
                             </picker:SfDatePicker>
 
-                            <picker:SfDatePicker x:Name="pickerFin" HeightRequest="150" WidthRequest="300" Margin="0,20,0,30"  SelectedDate="{Binding FechaFin, Mode=TwoWay}" >
+                            <picker:SfDatePicker
+                                x:Name="pickerFin"
+                                Margin="0,20,0,30"
+                                HeightRequest="150"
+                                SelectedDate="{Binding FechaFin, Mode=TwoWay}"
+                                WidthRequest="300">
                                 <picker:SfDatePicker.HeaderView>
-                                    <picker:PickerHeaderView Text="Hasta" Height="40"/>
+                                    <picker:PickerHeaderView Height="40" Text="Hasta" />
                                 </picker:SfDatePicker.HeaderView>
                             </picker:SfDatePicker>
 
-                            <mdc:Button  WidthRequest="200" 
-                                         Text="Filtrar"
-                                         HorizontalOptions="Center"
-                                         IconKind="Search"
-                                         Command="{Binding GetFacturasByFechaCommand}"/>
+                            <mdc:Button
+                                Command="{Binding GetFacturasByFechaCommand}"
+                                HorizontalOptions="Center"
+                                IconKind="Search"
+                                Text="Filtrar"
+                                WidthRequest="200" />
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
-                    
-                  
+
+
                 </mdc:NavigationBar>
             </mdc:TabItem>
         </mdc:Tabs>
 
-        <ScrollView Grid.Row="2" Grid.Column="1">
-
-        </ScrollView>
-        <!--BindingContext="{Binding Source={x:Reference DatosView}, Path=BindingContext}" y , Mode=OneWayToSource en source-->
-        <WebView Source="{Binding PDFData}" 
-                    Grid.Row="1"
-                     Grid.Column="2"
-                     WidthRequest="800" 
-                     HeightRequest="550"/>
+        <ScrollView Grid.Row="2" Grid.Column="1" />
+        <!--  BindingContext="{Binding Source={x:Reference DatosView}, Path=BindingContext}" y , Mode=OneWayToSource en source  -->
+        <WebView
+            Grid.Row="1"
+            Grid.Column="2"
+            HeightRequest="550"
+            Source="{Binding PDFData}"
+            WidthRequest="800" />
 
 
 

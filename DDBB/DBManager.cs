@@ -1,6 +1,7 @@
 ﻿using MauiMotos.DDBB.MotosDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -39,6 +40,11 @@ namespace MauiMotos.DDBB
         {
             return accesorios_adapter.GetNombreAccesorios();
 
+        }
+
+        public static DataTable GetAccesoriosByNombre(ObservableCollection<string>listaAccesorios)
+        {
+            return accesorios_adapter.GetAccesoriosByNombre(listaAccesorios);
         }
 
         public static DataTable GetAccesoriosByPrecio(int precioMenor, int precioMayor)

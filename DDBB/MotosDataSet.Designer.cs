@@ -3441,34 +3441,45 @@ WHERE        (fabricantes.nombre = @Marcas)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Npgsql.NpgsqlCommand[3];
+            this._commandCollection = new global::Npgsql.NpgsqlCommand[4];
             this._commandCollection[0] = new global::Npgsql.NpgsqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        nombre, precio\r\nFROM            accesorios";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Npgsql.NpgsqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        nombre, precio\r\nFROM            accesorios\r\nWHERE        (precio >=" +
-                " @precioMenor) AND (precio <= @precioMayor)";
+            this._commandCollection[1].CommandText = "SELECT        nombre, precio\r\nFROM            accesorios\r\nWHERE        (nombre = " +
+                "@nombre)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Npgsql.NpgsqlParameter param = new global::Npgsql.NpgsqlParameter();
+            param.ParameterName = "nombre";
+            param.Size = 255;
+            param.IsNullable = true;
+            param.SourceColumn = "nombre";
+            this._commandCollection[1].Parameters.Add(param);
+            this._commandCollection[2] = new global::Npgsql.NpgsqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        nombre, precio\r\nFROM            accesorios\r\nWHERE        (precio >=" +
+                " @precioMenor) AND (precio <= @precioMayor)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Npgsql.NpgsqlParameter();
             param.ParameterName = "precioMenor";
             param.DbType = global::System.Data.DbType.Decimal;
             param.NpgsqlDbType = global::NpgsqlTypes.NpgsqlDbType.Numeric;
             param.IsNullable = true;
             param.SourceColumn = "precio";
-            this._commandCollection[1].Parameters.Add(param);
+            this._commandCollection[2].Parameters.Add(param);
             param = new global::Npgsql.NpgsqlParameter();
             param.ParameterName = "precioMayor";
             param.DbType = global::System.Data.DbType.Decimal;
             param.NpgsqlDbType = global::NpgsqlTypes.NpgsqlDbType.Numeric;
             param.IsNullable = true;
             param.SourceColumn = "precio";
-            this._commandCollection[1].Parameters.Add(param);
-            this._commandCollection[2] = new global::Npgsql.NpgsqlCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        nombre AS Nombre\r\nFROM            accesorios";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(param);
+            this._commandCollection[3] = new global::Npgsql.NpgsqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT        nombre AS Nombre\r\nFROM            accesorios";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3486,8 +3497,25 @@ WHERE        (fabricantes.nombre = @Marcas)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual MotosDataSet.accesoriosDataTable GetAccesoriosByPrecio(global::System.Nullable<decimal> precioMenor, global::System.Nullable<decimal> precioMayor) {
+        public virtual MotosDataSet.accesoriosDataTable GetAccesoriosByNombre(object nombre) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((nombre == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((object)(nombre));
+            }
+            MotosDataSet.accesoriosDataTable dataTable = new MotosDataSet.accesoriosDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual MotosDataSet.accesoriosDataTable GetAccesoriosByPrecio(global::System.Nullable<decimal> precioMenor, global::System.Nullable<decimal> precioMayor) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((precioMenor.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(precioMenor.Value));
             }
@@ -3510,7 +3538,7 @@ WHERE        (fabricantes.nombre = @Marcas)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual MotosDataSet.accesoriosDataTable GetNombreAccesorios() {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             MotosDataSet.accesoriosDataTable dataTable = new MotosDataSet.accesoriosDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

@@ -35,14 +35,7 @@ namespace MauiMotos.ViewModels
 
 
         }
-        private void Chip_Touch(object sender, SKTouchEventArgs e)
-        {
-            if (sender is Chip)
-    {
-                // Acciones al hacer clic en el chip (por ejemplo, cambiar la imagen)
-                ChipsSeleccionado = "casco.png";
-            }
-        }
+
 
         [ObservableProperty]
         private string chipsSeleccionado;
@@ -180,7 +173,8 @@ namespace MauiMotos.ViewModels
             ListaAccesorios = DBUtils.DataTableToCollection(accesorios, "Nombre");
         }
 
-        [RelayCommand]
+
+        [RelayCommand] //Para añadir chips
         public void CargarFiltroAccesorios(string accesorio)
         {
             if (accesorio != null)
@@ -191,14 +185,32 @@ namespace MauiMotos.ViewModels
                 }
             }
         }
-        [RelayCommand]
+
+        [RelayCommand] //Para borrar chips
         public void BorrarFiltroAccesorios(string accesorio)
         {
             ListaFiltrosAccesorios.Remove(accesorio);
         }
 
 
-    [RelayCommand]
+        [RelayCommand] //Cargar el pdf de varios acesorios seleccionado
+        public async Task LoadAccesorios()
+        {
+            try
+            {
+                PDFData = await ReportsUtils.GetReport("AccesoriosDataSet",
+                    DBManager.GetAccesoriosByNombre(ListaFiltrosAccesorios), "Reports/AccesoriosReport.rdlc");
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción según tus necesidades (por ejemplo, mostrar un mensaje al usuario)
+                Console.WriteLine($"Error al cargar accesorios: {ex.Message}");
+            }
+
+        }
+
+
+        [RelayCommand]
         public async Task GetAccesoriosAsync() //Esto hace referencia al boton de buscar todos los Accesorios
         {
             PDFData = await ReportsUtils.GetReport("AccesoriosDataSet",
