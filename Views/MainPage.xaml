@@ -186,7 +186,7 @@
                                 Text="{Binding ResultadoPrecios}" />
                         </VerticalStackLayout>
                     </mdc:NavigationBarItem>
-                    <!--  PICKER CHIPS ACCESORIOS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  -->
+                    <!--  PICKER CHIPS ACCESORIOS  -->
                     <mdc:NavigationBarItem
                         ActivedIconKind="Check"
                         IconKind="Category"
@@ -207,45 +207,35 @@
                                     IconKind="Add" />
                             </HorizontalStackLayout>
                             <!--  Salimos del comboBox y el boton añadir  -->
+
                             <CollectionView
                                 HeightRequest="290"
-                                ItemsLayout="VerticalGrid,2"
-                                ItemsSource="{Binding ListaFiltrosAccesorios}"
+                                ItemsSource="{Binding listaImagenesAccesorios}"
                                 WidthRequest="330">
-
+                                <!--  Item source hace referencia a el tipo de coleccion que vamos a añadir, from text to images  -->
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical" Span="3" />
+                                </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-
-                                        <FlexLayout
-                                            Direction="Row"
-                                            JustifyContent="SpaceBetween"
-                                            Wrap="Wrap">
-                                            <mdc:Chip
+                                    <DataTemplate x:DataType="viewmodels:Accesorio">
+                                        <Grid>
+                                            <chip:SfChip
                                                 x:Name="accesorios_chip"
-                                                Margin="0,0,0,0"
-                                                ForegroundColor="Yellow"
-                                                IconColor="LightGreen"
-                                                OutlineColor="GreenYellow"
-                                                Style="{DynamicResource InputChipStyle}"
-                                                Text="{Binding}">
-
-                                                <mdc:Chip.Behaviors>
-                                                    <toolkit:EventToCommandBehavior
-                                                        BindingContext="{Binding Source={x:Reference accesorios_chip}, Path=BindingContext}"
-                                                        Command="{Binding BorrarFiltroAccesoriosCommand}"
-                                                        CommandParameter="{Binding Source={x:Reference accesorios_chip, accesorios_chip}, Path=Text}"
-                                                        EventName="Closed" />
-                                                </mdc:Chip.Behaviors>
-                                            </mdc:Chip>
-                                        </FlexLayout>
+                                                Margin="0,10,5,0"
+                                                Background="Aqua"
+                                                BackgroundImageSource="{Binding RutaAImagen}"
+                                                FontAttributes="Bold"
+                                                FontSize="12"
+                                                HeightRequest="100"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding Nombre}"
+                                                TextColor="Black"
+                                                VerticalTextAlignment="Start"
+                                                WidthRequest="100" />
+                                        </Grid>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-                            <chip:SfChip
-                                x:Name="chips"
-                                BackgroundImageSource="{Binding ChipsSeleccionado}"
-                                Text="Chip"
-                                WidthRequest="100" />
                             <mdc:Button
                                 Command="{Binding LoadAccesoriosCommand}"
                                 Text="Filtrar"

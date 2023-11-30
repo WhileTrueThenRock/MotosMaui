@@ -38,7 +38,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -51,15 +50,18 @@
 		<None Remove="Resources\Images\aprilia.png" />
 		<None Remove="Resources\Images\background1.png" />
 		<None Remove="Resources\Images\background2.jpg" />
+		<None Remove="Resources\Images\botas.png" />
 		<None Remove="Resources\Images\casco.png" />
 		<None Remove="Resources\Images\ducati.png" />
 		<None Remove="Resources\Images\erciMotos.png" />
+		<None Remove="Resources\Images\guantes.png" />
 		<None Remove="Resources\Images\harley.png" />
 		<None Remove="Resources\Images\honda.png" />
 		<None Remove="Resources\Images\husqvarna.png" />
 		<None Remove="Resources\Images\indian.png" />
 		<None Remove="Resources\Images\kawasaki.png" />
 		<None Remove="Resources\Images\ktm.png" />
+		<None Remove="Resources\Images\maletas_laterales.png" />
 		<None Remove="Resources\Images\moto_guzzi.png" />
 		<None Remove="Resources\Images\suzuki.png" />
 		<None Remove="Resources\Images\triumph.png" />
@@ -91,8 +93,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiAsset Include="Resources\Images\bmw.png" />
-	  <MauiAsset Include="Resources\Images\suzuki.png" />
+	  <MauiAsset Include="Resources\Images\marcas\bmw.png" />
+	  <MauiAsset Include="Resources\Images\marcas\suzuki.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\accesorios\casco.png" />
+	  <MauiImage Include="Resources\Images\accesorios\chaqueta.png" />
+	  <MauiImage Include="Resources\Images\accesorios\guantes.png" />
+	  <MauiImage Include="Resources\Images\marcas\aprilia.png" />
+	  <MauiImage Include="Resources\Images\marcas\background1.png" />
+	  <MauiImage Include="Resources\Images\marcas\background2.jpg" />
+	  <MauiImage Include="Resources\Images\marcas\bmw.png" />
+	  <MauiImage Include="Resources\Images\marcas\dotnet_bot.svg" BaseSize="168,208" />
+	  <MauiImage Include="Resources\Images\marcas\ducati.png" />
+	  <MauiImage Include="Resources\Images\marcas\ercimotos.png" />
+	  <MauiImage Include="Resources\Images\marcas\harley.png" />
+	  <MauiImage Include="Resources\Images\marcas\honda.png" />
+	  <MauiImage Include="Resources\Images\marcas\husqvarna.png" />
+	  <MauiImage Include="Resources\Images\marcas\indian.png" />
+	  <MauiImage Include="Resources\Images\marcas\kawasaki.png" />
+	  <MauiImage Include="Resources\Images\marcas\ktm.png" />
+	  <MauiImage Include="Resources\Images\marcas\moto_guzzi.png" />
+	  <MauiImage Include="Resources\Images\marcas\suzuki.png" />
+	  <MauiImage Include="Resources\Images\marcas\triumph.png" />
+	  <MauiImage Include="Resources\Images\marcas\yamaha.png" />
 	</ItemGroup>
 
 	<ItemGroup>

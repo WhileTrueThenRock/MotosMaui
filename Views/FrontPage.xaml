@@ -14,85 +14,34 @@
     x:DataType="viewmodels:FrontViewModel"
     BackgroundImageSource="background2.jpg">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="540" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Label
+            Margin="0,0,0,20"
+            FontSize="Large"
+            HorizontalOptions="CenterAndExpand"
+            Text="Iniciar Sesión" />
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="350" />
-            <ColumnDefinition Width="900" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+        <Entry
+            x:Name="EntryUsuario"
+            Margin="0,0,0,10"
+            Placeholder="Usuario" />
+        <Entry
+            x:Name="EntryPassword"
+            Margin="0,0,0,10"
+            IsPassword="True"
+            Placeholder="Contraseña" />
 
-        <!--  Iniciamos el apartado de Tabs  -->
-        <mdc:Tabs
-            Grid.Row="1"
-            Grid.Column="1"
-            Background="AliceBlue"
-            Style="{DynamicResource filledTabsStyle}">
-            <!--  Consulta General de Marcas y modelos  -->
-            <mdc:TabItem IconKind="Bookmarks" Text="Marcas y Modelos">
-                <mdc:NavigationBar>
-                    <mdc:NavigationBarItem
-                        ActivedIconKind="Check"
-                        IconKind="Category"
-                        Text="Por Accesorios">
+        <Button
+            BackgroundColor="#4CAF50"
+            Command="{Binding NavegarCommand}"
+            CommandParameter="MainPage"
+            Text="Iniciar Sesión"
+            TextColor="White" />
 
-                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference frontpage}, Path=BindingContext}">
-
-                            <HorizontalStackLayout>
-                                <mdc:ComboBox
-                                    x:Name="cb_accesorios"
-                                    Margin="0"
-                                    ItemsSource="{Binding ListaAccesorios}"
-                                    LabelText="Selecciona un accesorio..."
-                                    WidthRequest="300" />
-                                <mdc:IconButton
-                                    Command="{Binding CargarFiltroAccesoriosCommand}"
-                                    CommandParameter="{Binding Source={x:Reference cb_accesorios}, Path=Text}"
-                                    IconKind="Add" />
-                            </HorizontalStackLayout>
-                            <!--  Salimos del comboBox y el boton añadir  -->
-                            <CollectionView
-                                HeightRequest="290"
-                                ItemsLayout="VerticalGrid,2"
-                                ItemsSource="{Binding ListaFiltrosAccesorios}"
-                                WidthRequest="330">
-
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-
-                                        <FlexLayout
-                                            Direction="Row"
-                                            JustifyContent="SpaceBetween"
-                                            Wrap="Wrap">
-                                            <chip:SfChip
-                                                x:Name="accesorios_chip"
-                                                Margin="0,0,0,0"
-                                                Style="{DynamicResource InputChipStyle}"
-                                                Text="{Binding}">
-
-                                                <chip:SfChip.Behaviors>
-                                                    <toolkit:EventToCommandBehavior
-                                                        BindingContext="{Binding Source={x:Reference accesorios_chip}, Path=BindingContext}"
-                                                        Command="{Binding BorrarFiltroAccesoriosCommand}"
-                                                        CommandParameter="{Binding Source={x:Reference accesorios_chip, accesorios_chip}, Path=Text}"
-                                                        EventName="Closed" />
-                                                </chip:SfChip.Behaviors>
-                                            </chip:SfChip>
-                                        </FlexLayout>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-
-                        </VerticalStackLayout>
-                    </mdc:NavigationBarItem>
-                </mdc:NavigationBar>
-            </mdc:TabItem>
-        </mdc:Tabs>
-    </Grid>
+        <Label
+            Margin="0,20,0,0"
+            HorizontalOptions="CenterAndExpand"
+            Text="¿Olvidaste tu contraseña?"
+            TextColor="#2196F3" />
+    </StackLayout>
 </ContentPage>

@@ -56,6 +56,8 @@ namespace MauiMotos.ViewModels
         [ObservableProperty]
         private ObservableCollection<string> listaAccesorios;
 
+        public ObservableCollection<Accesorio> listaImagenesAccesorios { get; set; } = new();
+
         [ObservableProperty]
         private ObservableCollection<string> listaFiltrosAccesorios;
 
@@ -174,17 +176,49 @@ namespace MauiMotos.ViewModels
             ListaAccesorios = DBUtils.DataTableToCollection(accesorios, "Nombre");
         }
 
+        //public void CargarImagenesAccesorios()
+        //{
+        //    DataTable accesorios = DBManager.GetNombreAccesorios();
+        //    ListaAccesorios = DBUtils.DataTableToCollection(accesorios, "Nombre");
+        //    foreach (var accesorio in ListaAccesorios)
+        //    {
+        //        Accesorio accesorioModel = new Accesorio();
+        //        accesorioModel.Nombre = accesorio;
+        //        accesorioModel.RutaAImagen = $"{accesorio}.png"; //clases particulares
+        //        listaImagenesAccesorios.Add(accesorioModel);
+        //    }
+        //}
+
 
         [RelayCommand] //Para añadir chips
         public void CargarFiltroAccesorios(string accesorio)
         {
-            if (accesorio != null)
+            if (accesorio == null)
             {
-                if (!ListaFiltrosAccesorios.Contains(accesorio))
-                {
-                    ListaFiltrosAccesorios.Add(accesorio);
-                }
+                return;
             }
+            if (!ListaFiltrosAccesorios.Contains(accesorio))
+            {
+                ListaFiltrosAccesorios.Add(accesorio);
+
+            }
+
+            if (listaImagenesAccesorios.Any(x => x.Nombre.Equals(accesorio)))
+                return;
+            //El if de arriba es igual al foreach de abajo, pulsa para abrirlo
+            /*  foreach (var accesory in listaImagenesAccesorios)
+              {
+                  if (accesory.Equals(accesorio))
+                  {
+                      return;
+                  }
+
+              }*/
+
+            Accesorio accesorioModel = new Accesorio();
+            accesorioModel.Nombre = accesorio;
+            accesorioModel.RutaAImagen = $"{accesorio.Replace(" ", "_")}.png"; // esto sirve para concatenar el accesorio con png y sustituir los espacios blancos de los nombres compuestos por _
+            listaImagenesAccesorios.Add(accesorioModel);
         }
 
         [RelayCommand] //Para borrar chips
@@ -311,5 +345,13 @@ namespace MauiMotos.ViewModels
                     GetMotos();
                 }
             }
+
     }
+    public class Accesorio
+    {
+        public string Nombre { get; set; }
+        public string RutaAImagen { get; set; }
+
+    }
+
 }
