@@ -52,6 +52,7 @@
 		<None Remove="Resources\Images\background2.jpg" />
 		<None Remove="Resources\Images\botas.png" />
 		<None Remove="Resources\Images\casco.png" />
+		<None Remove="Resources\Images\cupula.png" />
 		<None Remove="Resources\Images\ducati.png" />
 		<None Remove="Resources\Images\erciMotos.png" />
 		<None Remove="Resources\Images\guantes.png" />
@@ -63,6 +64,7 @@
 		<None Remove="Resources\Images\ktm.png" />
 		<None Remove="Resources\Images\maletas_laterales.png" />
 		<None Remove="Resources\Images\moto_guzzi.png" />
+		<None Remove="Resources\Images\protector_de_tanque.png" />
 		<None Remove="Resources\Images\suzuki.png" />
 		<None Remove="Resources\Images\triumph.png" />
 		<None Remove="Resources\Images\yamaha.png" />

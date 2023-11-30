@@ -233,26 +233,23 @@ namespace MauiMotos.ViewModels
         {
             try
             {
-                if (ListaFiltrosAccesorios.Count > 0)
+                if (ListaFiltrosAccesorios.Count <= 0)
                 {
-                    // Obtén el primer chip seleccionado
-                    //hazme un bucle for que el selectedCHip retorne el nombre de todos los chips seleccionados del combobox
-                    for (int i = 0; i < ListaFiltrosAccesorios.Count; i++)
-                    {
-                        Accesorio = ListaFiltrosAccesorios[i];
-                       
-                    }
-                     PDFData = await ReportsUtils.GetReport("AccesoriosDataSet",
-                        DBManager.GetAccesoriosByNombre(Accesorio), "Reports/AccesoriosReport.rdlc");
-                       // string selectedChip = ListaFiltrosAccesorios[0];
+                    return;
+                }
+                   DataTable dt = new DataTable();
 
-                   
-                }
-                else
+                foreach (var item in ListaFiltrosAccesorios)
                 {
-                    // Opcionalmente maneja el caso en el que no se ha seleccionado ningún chip
-                    Console.WriteLine("No hay chips seleccionados.");
+                    DataTable dataTable = DBManager.GetAccesoriosByNombre(item);
+                    dt.Merge(dataTable, false, MissingSchemaAction.Add); 
+                    //esto se hace para concatenar las tablas de accesorios seleccionados
                 }
+
+                PDFData = await ReportsUtils.GetReport("AccesoriosDataSet",
+                    dt, "Reports/AccesoriosReport.rdlc");
+
+
             }
             catch (Exception ex)
             {
