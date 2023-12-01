@@ -16,22 +16,22 @@ namespace MauiMotos.ViewModels
     {
         public MainViewModel()
         {
-            listaFabricantes = new ObservableCollection<string>();
-            listaClientes = new ObservableCollection<string>();
-            listaAccesorios = new ObservableCollection<string>();
-            listaFiltrosAccesorios = new ObservableCollection<string>();
+            ListaFabricantes = new ObservableCollection<string>();
+            ListaClientes = new ObservableCollection<string>();
+            ListaAccesorios = new ObservableCollection<string>();
+            ListaFiltrosAccesorios = new ObservableCollection<string>();
             CargarComboMarcas();
             CargarComboClientes();
             CargarComboAccesorios();
-            anioMenor = 1900;
-            anioMayor = 2024;
-            precioMenor = 0;
-            precioMayor = 0;
+            AnioMenor = 1900;
+            AnioMayor = 2024;
+            PrecioMenor = 0;
+            PrecioMayor = 0;
             SwitchEstado = false;
-            fechaIni = new DateTime(2000, 1, 1);
-            fechaFin = DateTime.Now;
-            imagenSeleccionada = "";
-            accesorio = "";
+            FechaIni = new DateTime(2000, 1, 1);
+            FechaFin = DateTime.Now;
+            ImagenSeleccionada = "";
+            Accesorio = "";
             SfPopup popup = new SfPopup();
 
         }
@@ -103,67 +103,81 @@ namespace MauiMotos.ViewModels
         public void CargarComboMarcas() //Solo para cargar el picker de motos
         {
             DataTable fabricantesModelosDT = DBManager.GetNombreFabricantes();
-            ListaFabricantes = DBUtils.DataTableToCollection(fabricantesModelosDT, "Marcas");
-            if (ListaFabricantes == null)
+            if (fabricantesModelosDT.Rows.Count == 0 )
             {
-                MostrarMensajePopup("Error","No hay registros");
+                 MostrarMensajePopup("Error","No hay registros");
+            }
+            else
+            {
+            ListaFabricantes = DBUtils.DataTableToCollection(fabricantesModelosDT, "Marcas");
+
             }
         }
 
         [RelayCommand] //Cargar el pdf de una marca seleccionada
         public async Task LoadPickerMarcas(string marca)
         {
-            PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet",
-            DBManager.GetFabricantesByMarca(marca), "Reports/FabricantesModelosReport.rdlc");
-
-            switch (marca)
+            var dt = DBManager.GetFabricantesByMarca(marca);
+            if (dt.Rows.Count == 0)
             {
-                case "Honda":
-                    ImagenSeleccionada = "honda.png";
-                    break;
-                case "Yamaha":
-                    ImagenSeleccionada = "yamaha.png";
-                    break;
-                case "Harley-Davidson":
-                    ImagenSeleccionada = "harley.png";
-                    break;
-                case "Kawasaki":
-                    ImagenSeleccionada = "kawasaki.png";
-                    break;
-                case "Suzuki":
-                    ImagenSeleccionada = "suzuki.png";
-                    break;
-                case "Ducati":
-                    ImagenSeleccionada = "ducati.png";
-                    break;
-                case "BMW Motorrad":
-                    ImagenSeleccionada = "bmw.png";
-                    break;
-                case "KTM":
-                    ImagenSeleccionada = "ktm.png";
-                    break;
-                case "Triumph":
-                    ImagenSeleccionada = "triumph.png";
-                    break;
-                case "Indian Motorcycle":
-                    ImagenSeleccionada = "indian.png";
-                    break;
-                case "Aprilia":
-                    ImagenSeleccionada = "aprilia.png";
-                    break;
-                case "Moto Guzzi":
-                    ImagenSeleccionada = "moto_guzzi.png";
-                    break;
-                case "Husqvarna":
-                    ImagenSeleccionada = "husqvarna.png";
-                    break;
-
+                MostrarMensajePopup("Error", "No hay registros");
             }
+
+                else {
+                        PDFData = await ReportsUtils.GetReport("FabricantesModelosDataSet", dt
+                        , "Reports/FabricantesModelosReport.rdlc");
+                switch (marca)
+                {
+                    case "Honda":
+                        ImagenSeleccionada = "honda.png";
+                        break;
+                    case "Yamaha":
+                        ImagenSeleccionada = "yamaha.png";
+                        break;
+                    case "Harley-Davidson":
+                        ImagenSeleccionada = "harley.png";
+                        break;
+                    case "Kawasaki":
+                        ImagenSeleccionada = "kawasaki.png";
+                        break;
+                    case "Suzuki":
+                        ImagenSeleccionada = "suzuki.png";
+                        break;
+                    case "Ducati":
+                        ImagenSeleccionada = "ducati.png";
+                        break;
+                    case "BMW Motorrad":
+                        ImagenSeleccionada = "bmw.png";
+                        break;
+                    case "KTM":
+                        ImagenSeleccionada = "ktm.png";
+                        break;
+                    case "Triumph":
+                        ImagenSeleccionada = "triumph.png";
+                        break;
+                    case "Indian Motorcycle":
+                        ImagenSeleccionada = "indian.png";
+                        break;
+                    case "Aprilia":
+                        ImagenSeleccionada = "aprilia.png";
+                        break;
+                    case "Moto Guzzi":
+                        ImagenSeleccionada = "moto_guzzi.png";
+                        break;
+                    case "Husqvarna":
+                        ImagenSeleccionada = "husqvarna.png";
+                        break;
+
+                }
+            }
+
+          
         }
-        private async Task MostrarMensajePopup(string titulo, string mensaje)
+        private void MostrarMensajePopup(string titulo, string mensaje)
         {
-            await App.Current.MainPage.DisplayAlert(titulo, mensaje, "Aceptar");
+             App.Current.MainPage.DisplayAlert(titulo, mensaje, "Aceptar");
         }
+ 
 
         public void CargarComboClientes() //Solo para cargar el picker de clientes
         {

@@ -256,16 +256,10 @@
                             </CollectionView>
                             <HorizontalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}" HorizontalOptions="Center">
                                 <mdc:Button
+                                    Margin="0,-20,0,0"
                                     Command="{Binding LoadAccesoriosCommand}"
                                     Text="Filtrar"
                                     WidthRequest="200" />
-                                <Button
-                                    x:Name="clickToShowPopup"
-                                    Clicked="ClickToShowPopup_Clicked"
-                                    HorizontalOptions="Center"
-                                    Text="ClickToShowPopup"
-                                    VerticalOptions="Start" />
-                                <syncfusion:SfPopup x:Name="popup" />
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
 
@@ -361,6 +355,13 @@
                                 Text="Selecciona primera fecha"
                                 TextColor="Black"
                                 WidthRequest="250" />
+                            <Label
+                                Margin="0,20,0,0"
+                                FontAttributes="Italic"
+                                FontSize="25"
+                                HorizontalOptions="Center"
+                                Text="{Binding FechaIni, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                TextColor="Black" />
 
                             <picker:SfDatePicker
                                 x:Name="pickerFin"
@@ -385,9 +386,17 @@
                                 Text="Selecciona segunda fecha"
                                 TextColor="Black"
                                 WidthRequest="250" />
+                            <!--  Text="{Binding Source={x:Reference pickerFin}, Path=SelectedDate, StringFormat='dd/MM/yyyy'}"  -->
+                            <Label
+                                Margin="0,20,0,0"
+                                FontAttributes="Italic"
+                                FontSize="25"
+                                HorizontalOptions="Center"
+                                Text="{Binding FechaFin, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                TextColor="Black" />
 
                             <mdc:Button
-                                Margin="0,170,0,10"
+                                Margin="0,100,0,10"
                                 Command="{Binding GetFacturasByFechaCommand}"
                                 HorizontalOptions="Center"
                                 IconKind="Search"

@@ -135,6 +135,7 @@
 	  <MauiImage Include="Resources\Images\accesorios\casco.png" />
 	  <MauiImage Include="Resources\Images\accesorios\chaqueta.png" />
 	  <MauiImage Include="Resources\Images\accesorios\cupula.png" />
+	  <MauiImage Include="Resources\Images\accesorios\escape_de_doble_salida.png" />
 	  <MauiImage Include="Resources\Images\accesorios\escape_silencioso.png" />
 	  <MauiImage Include="Resources\Images\accesorios\espejos_retrovisores_cromados.png" />
 	  <MauiImage Include="Resources\Images\accesorios\estriberas_ajustables.png" />

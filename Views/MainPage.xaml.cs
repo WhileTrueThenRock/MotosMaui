@@ -16,10 +16,6 @@ namespace MauiMotos
             };
         }
 
-        private void ClickToShowPopup_Clicked(object sender, EventArgs e)
-        {
-            popup.Show();
-        }
         private void Button_ClickedIni(object sender, System.EventArgs e)
         {
             this.pickerIni.IsOpen = true;
