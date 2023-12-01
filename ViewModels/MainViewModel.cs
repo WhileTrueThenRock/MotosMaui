@@ -8,6 +8,8 @@ using Syncfusion.Maui.Core;
 using Material.Components.Maui;
 using SkiaSharp.Views.Maui;
 using System.Security.Cryptography;
+using Syncfusion.Maui.Popup;
+using Syncfusion.Maui.Picker;
 namespace MauiMotos.ViewModels
 {
     internal partial class MainViewModel : ObservableObject
@@ -26,15 +28,18 @@ namespace MauiMotos.ViewModels
             precioMenor = 0;
             precioMayor = 0;
             SwitchEstado = false;
-            fechaIni = DateTime.Now;
+            fechaIni = new DateTime(2000, 1, 1);
             fechaFin = DateTime.Now;
             imagenSeleccionada = "";
             accesorio = "";
             chipsSeleccionado = "casco.png";
+            SfPopup popup = new SfPopup();
 
             
 
+
         }
+     
         [ObservableProperty]
         private string accesorio;
 
@@ -225,6 +230,14 @@ namespace MauiMotos.ViewModels
         public void BorrarFiltroAccesorios(string accesorio)
         {
             ListaFiltrosAccesorios.Remove(accesorio);
+
+        }
+
+        [RelayCommand]
+        public void LimpiarListaAccesorios()
+        {
+            ListaFiltrosAccesorios.Clear();
+
         }
 
 
@@ -342,6 +355,7 @@ namespace MauiMotos.ViewModels
                     GetMotos();
                 }
             }
+     
 
     }
     public class Accesorio

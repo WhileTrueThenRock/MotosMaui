@@ -9,7 +9,7 @@ namespace MauiMotos
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder.ConfigureSyncfusionCore();
+           
             builder
                 .UseMauiApp<App>().UseMauiCommunityToolkit()
                 .ConfigureSyncfusionCore()
@@ -27,7 +27,7 @@ namespace MauiMotos
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-
+            builder.ConfigureSyncfusionCore();
             return builder.Build();
         }
     }

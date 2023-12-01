@@ -47,25 +47,48 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Images\alforjas_de_cuero.png" />
+		<None Remove="Resources\Images\amortiguadores_ajustables.png" />
 		<None Remove="Resources\Images\aprilia.png" />
+		<None Remove="Resources\Images\asiento_de_gel.png" />
+		<None Remove="Resources\Images\asiento_para_pasajero.png" />
+		<None Remove="Resources\Images\asiento_personalizado.png" />
 		<None Remove="Resources\Images\background1.png" />
 		<None Remove="Resources\Images\background2.jpg" />
+		<None Remove="Resources\Images\bateria_de_litio.png" />
 		<None Remove="Resources\Images\botas.png" />
+		<None Remove="Resources\Images\candado_de_disco.png" />
 		<None Remove="Resources\Images\casco.png" />
 		<None Remove="Resources\Images\cupula.png" />
 		<None Remove="Resources\Images\ducati.png" />
 		<None Remove="Resources\Images\erciMotos.png" />
+		<None Remove="Resources\Images\escape_de_doble_salida.png" />
+		<None Remove="Resources\Images\escape_silencioso.png" />
+		<None Remove="Resources\Images\espejos_retrovisores_cromados.png" />
+		<None Remove="Resources\Images\estriberas_ajustables.png" />
+		<None Remove="Resources\Images\filtro_de_aire_de_alto_rendimiento.png" />
 		<None Remove="Resources\Images\guantes.png" />
+		<None Remove="Resources\Images\guardabarros_corto.png" />
 		<None Remove="Resources\Images\harley.png" />
 		<None Remove="Resources\Images\honda.png" />
 		<None Remove="Resources\Images\husqvarna.png" />
 		<None Remove="Resources\Images\indian.png" />
 		<None Remove="Resources\Images\kawasaki.png" />
+		<None Remove="Resources\Images\kit_de_herramientas.png" />
+		<None Remove="Resources\Images\kit_de_iluminacion_led.png" />
 		<None Remove="Resources\Images\ktm.png" />
+		<None Remove="Resources\Images\luces_led.png" />
 		<None Remove="Resources\Images\maletas_laterales.png" />
 		<None Remove="Resources\Images\moto_guzzi.png" />
-		<None Remove="Resources\Images\protector_de_tanque.png" />
+		<None Remove="Resources\Images\neumaticos_deportivos.png" />
+		<None Remove="Resources\Images\protectores_de_horquilla.png" />
+		<None Remove="Resources\Images\punios_calefactables.png" />
+		<None Remove="Resources\Images\punios_con_disenio_personalizado.png" />
+		<None Remove="Resources\Images\sistema_de_escape_deportivo.png" />
+		<None Remove="Resources\Images\soporte_de_matricula.png" />
+		<None Remove="Resources\Images\soporte_para_telefono.png" />
 		<None Remove="Resources\Images\suzuki.png" />
+		<None Remove="Resources\Images\top_case_de_aluminio.png" />
 		<None Remove="Resources\Images\triumph.png" />
 		<None Remove="Resources\Images\yamaha.png" />
 		<None Remove="Resources\Raw\Reports\AccesoriosReport.rdlc" />
@@ -87,6 +110,7 @@
 		<PackageReference Include="ReportViewerCore.WinForms" Version="15.1.18" />
 		<PackageReference Include="Syncfusion.Maui.Core" Version="23.2.6" />
 		<PackageReference Include="Syncfusion.Maui.Picker" Version="23.2.5" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="23.2.6" />
 		<PackageReference Include="Syncfusion.Maui.Sliders" Version="23.2.5" />
 	</ItemGroup>
 
@@ -100,9 +124,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Images\accesorios\alforjas_de_cuero.png" />
+	  <MauiImage Include="Resources\Images\accesorios\amortiguadores_ajustables.png" />
+	  <MauiImage Include="Resources\Images\accesorios\asiento_de_gel.png" />
+	  <MauiImage Include="Resources\Images\accesorios\asiento_para_pasajero.png" />
+	  <MauiImage Include="Resources\Images\accesorios\asiento_personalizado.png" />
+	  <MauiImage Include="Resources\Images\accesorios\bateria_de_litio.png" />
+	  <MauiImage Include="Resources\Images\accesorios\botas.png" />
+	  <MauiImage Include="Resources\Images\accesorios\candado_de_disco.png" />
 	  <MauiImage Include="Resources\Images\accesorios\casco.png" />
 	  <MauiImage Include="Resources\Images\accesorios\chaqueta.png" />
+	  <MauiImage Include="Resources\Images\accesorios\cupula.png" />
+	  <MauiImage Include="Resources\Images\accesorios\escape_silencioso.png" />
+	  <MauiImage Include="Resources\Images\accesorios\espejos_retrovisores_cromados.png" />
+	  <MauiImage Include="Resources\Images\accesorios\estriberas_ajustables.png" />
+	  <MauiImage Include="Resources\Images\accesorios\filtro_de_aire_de_alto_rendimiento.png" />
 	  <MauiImage Include="Resources\Images\accesorios\guantes.png" />
+	  <MauiImage Include="Resources\Images\accesorios\guardabarros_corto.png" />
+	  <MauiImage Include="Resources\Images\accesorios\kit_de_herramientas.png" />
+	  <MauiImage Include="Resources\Images\accesorios\kit_de_iluminacion_led.png" />
+	  <MauiImage Include="Resources\Images\accesorios\luces_led.png" />
+	  <MauiImage Include="Resources\Images\accesorios\maletas_laterales.png" />
+	  <MauiImage Include="Resources\Images\accesorios\neumaticos_deportivos.png" />
+	  <MauiImage Include="Resources\Images\accesorios\protectores_de_horquilla.png" />
+	  <MauiImage Include="Resources\Images\accesorios\protector_de_tanque.png" />
+	  <MauiImage Include="Resources\Images\accesorios\punios_calefactables.png" />
+	  <MauiImage Include="Resources\Images\accesorios\punios_con_disenio_personalizado.png" />
+	  <MauiImage Include="Resources\Images\accesorios\sistema_de_escape_deportivo.png" />
+	  <MauiImage Include="Resources\Images\accesorios\soporte_de_matricula.png" />
+	  <MauiImage Include="Resources\Images\accesorios\soporte_para_telefono.png" />
+	  <MauiImage Include="Resources\Images\accesorios\top_case_de_aluminio.png" />
 	  <MauiImage Include="Resources\Images\marcas\aprilia.png" />
 	  <MauiImage Include="Resources\Images\marcas\background1.png" />
 	  <MauiImage Include="Resources\Images\marcas\background2.jpg" />

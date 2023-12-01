@@ -7,6 +7,7 @@
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
     xmlns:sliders="clr-namespace:Syncfusion.Maui.Sliders;assembly=Syncfusion.Maui.Sliders"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewmodels="clr-namespace:MauiMotos.ViewModels"
     x:Name="mainpage"
@@ -109,7 +110,7 @@
                                 Text="Selecciona una marca" />
                             <Picker
                                 x:Name="cb_marcas"
-                                Background="LightBlue"
+                                Background="Purple"
                                 BackgroundColor="Black"
                                 ItemsSource="{Binding ListaFabricantes}"
                                 WidthRequest="200">
@@ -228,7 +229,6 @@
                                                 FontSize="12"
                                                 HeightRequest="100"
                                                 HorizontalTextAlignment="Center"
-                                                Text="{Binding Nombre}"
                                                 TextColor="Black"
                                                 VerticalTextAlignment="Start"
                                                 WidthRequest="100" />
@@ -236,10 +236,19 @@
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-                            <mdc:Button
-                                Command="{Binding LoadAccesoriosCommand}"
-                                Text="Filtrar"
-                                WidthRequest="200" />
+                            <HorizontalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}" HorizontalOptions="Center">
+                                <mdc:Button
+                                    Command="{Binding LoadAccesoriosCommand}"
+                                    Text="Filtrar"
+                                    WidthRequest="200" />
+                                <Button
+                                    x:Name="clickToShowPopup"
+                                    Clicked="ClickToShowPopup_Clicked"
+                                    HorizontalOptions="Center"
+                                    Text="ClickToShowPopup"
+                                    VerticalOptions="Start" />
+                                <syncfusion:SfPopup x:Name="popup" />
+                            </HorizontalStackLayout>
                         </VerticalStackLayout>
 
                     </mdc:NavigationBarItem>
@@ -310,31 +319,51 @@
                             Grid.Column="1"
                             BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
 
-                            <!--<DatePicker TextColor="Black" Date="{Binding FechaIni}" />-->
-                            <!--<DatePicker TextColor="Black" Date="{Binding FechaFin}" />-->
-
                             <picker:SfDatePicker
                                 x:Name="pickerIni"
-                                HeightRequest="150"
+                                HeightRequest="20"
+                                Mode="Dialog"
                                 SelectedDate="{Binding FechaIni, Mode=TwoWay}"
-                                WidthRequest="300">
+                                WidthRequest="700">
                                 <picker:SfDatePicker.HeaderView>
-                                    <picker:PickerHeaderView Height="40" Text="Desde" />
+                                    <picker:PickerHeaderView
+                                        Height="40"
+                                        Background="MediumPurple"
+                                        DividerColor="Red"
+                                        Text="Desde" />
                                 </picker:SfDatePicker.HeaderView>
                             </picker:SfDatePicker>
+                            <Button
+                                x:Name="pickerButtonIni"
+                                Clicked="Button_ClickedIni"
+                                HeightRequest="5"
+                                Text="Selecciona primera fecha"
+                                WidthRequest="250" />
 
                             <picker:SfDatePicker
                                 x:Name="pickerFin"
                                 Margin="0,20,0,30"
-                                HeightRequest="150"
+                                HeightRequest="20"
+                                Mode="Dialog"
                                 SelectedDate="{Binding FechaFin, Mode=TwoWay}"
                                 WidthRequest="300">
                                 <picker:SfDatePicker.HeaderView>
-                                    <picker:PickerHeaderView Height="40" Text="Hasta" />
+                                    <picker:PickerHeaderView
+                                        Height="40"
+                                        Background="MediumPurple"
+                                        DividerColor="Red"
+                                        Text="Hasta" />
                                 </picker:SfDatePicker.HeaderView>
                             </picker:SfDatePicker>
+                            <Button
+                                x:Name="pickerButtonFin"
+                                Clicked="Button_ClickedFin"
+                                HeightRequest="5"
+                                Text="Selecciona segunda fecha"
+                                WidthRequest="250" />
 
                             <mdc:Button
+                                Margin="0,170,0,0"
                                 Command="{Binding GetFacturasByFechaCommand}"
                                 HorizontalOptions="Center"
                                 IconKind="Search"

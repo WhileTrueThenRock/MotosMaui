@@ -1,4 +1,5 @@
 ﻿using MauiMotos.ViewModels;
+using Syncfusion.Maui.Picker;
 
 namespace MauiMotos
 {
@@ -9,11 +10,23 @@ namespace MauiMotos
         {
             InitializeComponent();
             BindingContext = new MainViewModel();
+            SfDatePicker datePicker = new SfDatePicker()
+            {
+                Mode = PickerMode.Dialog
+            };
         }
 
-        private void accesorios_chip_Touch(object sender, SkiaSharp.Views.Maui.SKTouchEventArgs e)
+        private void ClickToShowPopup_Clicked(object sender, EventArgs e)
         {
-
+            popup.Show();
+        }
+        private void Button_ClickedIni(object sender, System.EventArgs e)
+        {
+            this.pickerIni.IsOpen = true;
+        }
+        private void Button_ClickedFin(object sender, System.EventArgs e)
+        {
+            this.pickerFin.IsOpen = true;
         }
     }
 }
