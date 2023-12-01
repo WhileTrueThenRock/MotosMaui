@@ -32,19 +32,14 @@ namespace MauiMotos.ViewModels
             fechaFin = DateTime.Now;
             imagenSeleccionada = "";
             accesorio = "";
-            chipsSeleccionado = "casco.png";
             SfPopup popup = new SfPopup();
 
-            
-
-
         }
+
+
      
         [ObservableProperty]
         private string accesorio;
-
-        [ObservableProperty]
-        private string chipsSeleccionado;
 
         [ObservableProperty]
         private string imagenSeleccionada;
