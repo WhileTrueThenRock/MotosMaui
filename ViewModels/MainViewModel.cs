@@ -104,6 +104,10 @@ namespace MauiMotos.ViewModels
         {
             DataTable fabricantesModelosDT = DBManager.GetNombreFabricantes();
             ListaFabricantes = DBUtils.DataTableToCollection(fabricantesModelosDT, "Marcas");
+            if (ListaFabricantes == null)
+            {
+                MostrarMensajePopup("Error","No hay registros");
+            }
         }
 
         [RelayCommand] //Cargar el pdf de una marca seleccionada
@@ -153,7 +157,12 @@ namespace MauiMotos.ViewModels
                 case "Husqvarna":
                     ImagenSeleccionada = "husqvarna.png";
                     break;
+
             }
+        }
+        private async Task MostrarMensajePopup(string titulo, string mensaje)
+        {
+            await App.Current.MainPage.DisplayAlert(titulo, mensaje, "Aceptar");
         }
 
         public void CargarComboClientes() //Solo para cargar el picker de clientes

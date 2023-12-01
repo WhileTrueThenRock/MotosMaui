@@ -45,11 +45,18 @@
 
                         <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
                             <!--  Boton general de marcas y modelos eliminado y sustituido por Ver disponibilidad  -->
-                            <HorizontalStackLayout Spacing="90">
-                                <mdc:Label ForegroundColor="Black" Text="Motos Disponibles" />
+                            <HorizontalStackLayout Spacing="60">
+                                <mdc:Label
+                                    Margin="10"
+                                    FontItalic="True"
+                                    FontSize="25"
+                                    ForegroundColor="Black"
+                                    Text="Motos Disponibles" />
+
                                 <mdc:Switch HasIcon="True" IsChecked="{Binding SwitchEstado, Mode=TwoWay}" />
                             </HorizontalStackLayout>
                             <mdc:Button
+                                Margin="0,50,0,0"
                                 Command="{Binding GetMotosDisponiblesCommand}"
                                 IconKind="Search"
                                 Text="Consultar catálogo"
@@ -104,13 +111,15 @@
 
                         <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
                             <mdc:Label
-                                FontSize="16"
+                                Margin="0,20,0,0"
+                                FontItalic="True"
+                                FontSize="25"
                                 ForegroundColor="Black"
                                 HorizontalOptions="Center"
                                 Text="Selecciona una marca" />
                             <Picker
                                 x:Name="cb_marcas"
-                                Background="Purple"
+                                Background="MediumPurple"
                                 BackgroundColor="Black"
                                 ItemsSource="{Binding ListaFabricantes}"
                                 WidthRequest="200">
@@ -142,7 +151,12 @@
 
                         <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}" HeightRequest="400">
                             <!--  Boton para filtrar por Accesorios  -->
-                            <mdc:Label ForegroundColor="Black" Text="Listado de Accesorios" />
+                            <mdc:Label
+                                Margin="0,50,0,0"
+                                FontItalic="True"
+                                FontSize="25"
+                                ForegroundColor="Black"
+                                Text="Listado de Accesorios" />
                             <mdc:Button
                                 Command="{Binding GetAccesoriosCommand}"
                                 HorizontalOptions="Center"
@@ -158,6 +172,8 @@
                         <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
                             <mdc:Label
                                 Margin="0,50,0,0"
+                                FontItalic="True"
+                                FontSize="25"
                                 ForegroundColor="Black"
                                 Text="Rango de precios" />
                             <sliders:SfRangeSlider
@@ -198,11 +214,13 @@
                             <HorizontalStackLayout>
                                 <mdc:ComboBox
                                     x:Name="cb_accesorios"
-                                    Margin="0"
+                                    Margin="50,0,0,0"
+                                    FontSize="12"
                                     ItemsSource="{Binding ListaAccesorios}"
                                     LabelText="Selecciona un accesorio..."
-                                    WidthRequest="300" />
+                                    WidthRequest="200" />
                                 <mdc:IconButton
+                                    Margin="30,20,0,0"
                                     Command="{Binding CargarFiltroAccesoriosCommand}"
                                     CommandParameter="{Binding Source={x:Reference cb_accesorios}, Path=Text}"
                                     IconKind="Add" />
@@ -264,11 +282,12 @@
                         IconKind="Money"
                         Text="Todas las ventas">
 
-                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}" HeightRequest="200">
+                        <VerticalStackLayout BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}" HeightRequest="500">
                             <!--  Boton para filtrar por fecha fabricacion  -->
                             <mdc:Label
+                                Margin="0,50,0,10"
                                 FontItalic="True"
-                                FontSize="24"
+                                FontSize="25"
                                 ForegroundColor="Black"
                                 Text="Todas las ventas" />
                             <mdc:Button
@@ -289,13 +308,14 @@
                             Grid.Column="1"
                             BindingContext="{Binding Source={x:Reference mainpage}, Path=BindingContext}">
                             <mdc:Label
-                                FontSize="16"
+                                FontItalic="True"
+                                FontSize="25"
                                 ForegroundColor="Black"
                                 HorizontalOptions="Center"
                                 Text="Selecciona un cliente" />
                             <Picker
                                 x:Name="cb_clientes"
-                                Background="LightBlue"
+                                Background="MediumPurple"
                                 BackgroundColor="Black"
                                 ItemsSource="{Binding ListaClientes}"
                                 WidthRequest="200">
@@ -335,9 +355,11 @@
                             </picker:SfDatePicker>
                             <Button
                                 x:Name="pickerButtonIni"
+                                Background="MediumPurple"
                                 Clicked="Button_ClickedIni"
                                 HeightRequest="5"
                                 Text="Selecciona primera fecha"
+                                TextColor="Black"
                                 WidthRequest="250" />
 
                             <picker:SfDatePicker
@@ -357,13 +379,15 @@
                             </picker:SfDatePicker>
                             <Button
                                 x:Name="pickerButtonFin"
+                                Background="MediumPurple"
                                 Clicked="Button_ClickedFin"
                                 HeightRequest="5"
                                 Text="Selecciona segunda fecha"
+                                TextColor="Black"
                                 WidthRequest="250" />
 
                             <mdc:Button
-                                Margin="0,170,0,0"
+                                Margin="0,170,0,10"
                                 Command="{Binding GetFacturasByFechaCommand}"
                                 HorizontalOptions="Center"
                                 IconKind="Search"

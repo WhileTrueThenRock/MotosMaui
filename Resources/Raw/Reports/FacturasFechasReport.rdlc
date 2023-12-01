@@ -584,7 +584,7 @@
   <Width>6.5in</Width>
   <Page>
     <PageHeader>
-      <Height>2.8575cm</Height>
+      <Height>2.92806cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -592,8 +592,9 @@
           <Source>Embedded</Source>
           <Value>erciMotosGrey</Value>
           <Sizing>FitProportional</Sizing>
+          <Top>0.29104cm</Top>
           <Left>1.6637cm</Left>
-          <Height>2.8575cm</Height>
+          <Height>2.56646cm</Height>
           <Width>2.92875cm</Width>
           <Style>
             <Border>
